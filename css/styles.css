@@ -1,4 +1,6 @@
-/* Reset básico */
+/* =========================================
+   RESET BÁSICO
+   ========================================= */
 * {
     margin: 0;
     padding: 0;
@@ -12,17 +14,9 @@ body {
     line-height: 1.6;
 }
 
-/* /* Navegación */
-nav {
-    background-color: #2c3e50;
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between; /* ← ESTO ES CLAVE: empuja los elementos a los extremos */
-    align-items: center; /* Centra verticalmente */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-/* Navegación */
+/* =========================================
+   NAVEGACIÓN
+   ========================================= */
 nav {
     background-color: #2c3e50;
     padding: 1rem 2rem;
@@ -52,7 +46,11 @@ nav a:hover {
     background-color: #34495e;
 }
 
-/* Botón de Login - Tamaño consistente */
+nav a.active {
+    background-color: rgba(255, 255, 255, 0.15);
+    font-weight: bold;
+}
+
 nav .btn-login {
     background-color: #667eea;
     color: white;
@@ -71,8 +69,9 @@ nav .btn-login:hover {
     transform: translateY(-2px);
 }
 
-
-/* Header */
+/* =========================================
+   HEADER
+   ========================================= */
 header {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
@@ -90,7 +89,9 @@ header p {
     opacity: 0.9;
 }
 
-/* Main content */
+/* =========================================
+   MAIN CONTENT
+   ========================================= */
 main {
     max-width: 1200px;
     margin: 0 auto;
@@ -103,7 +104,9 @@ main {
     color: #2c3e50;
 }
 
-/* Cards */
+/* =========================================
+   CARDS (Index)
+   ========================================= */
 .cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -136,7 +139,9 @@ main {
     font-size: 1.1rem;
 }
 
-/* Footer */
+/* =========================================
+   FOOTER
+   ========================================= */
 footer {
     background-color: #2c3e50;
     color: white;
@@ -144,23 +149,24 @@ footer {
     padding: 2rem;
     margin-top: 3rem;
 }
-/* =========================================
-   ESTILOS PARA LA PÁGINA DE TAREAS
-   ========================================= */
 
-/* Contenedor de la tabla para que sea responsive en móviles */
+/* =========================================
+   TABLA DE TAREAS
+   ========================================= */
 .table-container {
     background: white;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    overflow: hidden; /* Para que los bordes redondeados funcionen con la tabla */
-    overflow-x: auto; /* Permite scroll horizontal en pantallas pequeñas */
+    overflow: hidden;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .task-table {
     width: 100%;
     border-collapse: collapse;
     text-align: left;
+    min-width: 800px;
 }
 
 .task-table th {
@@ -186,10 +192,18 @@ footer {
 }
 
 .task-table tr:hover {
-    background-color: #f8f9fa; /* Efecto hover en las filas */
+    background-color: #f8f9fa;
 }
 
-/* Etiqueta de Responsable (Avatar con iniciales) */
+/* =========================================
+   AVATARES DE USUARIOS
+   ========================================= */
+.user-cell {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
 .user-avatar {
     display: inline-flex;
     align-items: center;
@@ -199,73 +213,163 @@ footer {
     border-radius: 50%;
     color: white;
     font-weight: bold;
-    font-size: 0.8rem;
-    margin-right: 8px;
+    font-size: 0.85rem;
+    flex-shrink: 0;
 }
 
+.user-compartidas { background-color: #6c757d; }
 .user-rosa { background-color: #e83e8c; }
 .user-pedro { background-color: #0d6efd; }
 .user-miguel { background-color: #198754; }
 .user-ana { background-color: #fd7e14; }
-.user-compartidas { background-color: #6c757d; }
 
 .user-name {
     font-weight: 500;
-    font-size: 0.95rem;
+    color: #333;
 }
 
-/* Etiquetas de Duración */
-.tag {
+/* =========================================
+   BADGES (Etiquetas de colores)
+   ========================================= */
+.badge {
     display: inline-block;
-    padding: 0.25rem 0.6rem;
-    border-radius: 12px;
+    padding: 0.3rem 0.7rem;
+    border-radius: 20px;
     font-size: 0.75rem;
     font-weight: 600;
 }
 
-.tag-expres { background-color: #d1e7dd; color: #0f5132; }
-.tag-media { background-color: #fff3cd; color: #664d03; }
-.tag-profunda { background-color: #f8d7da; color: #842029; }
+.badge-cocina { background-color: #fff3cd; color: #664d03; }
+.badge-bano { background-color: #cff4fc; color: #055160; }
+.badge-dormitorios { background-color: #f8d7da; color: #842029; }
+.badge-salon { background-color: #d1e7dd; color: #0f5132; }
+.badge-lavanderia { background-color: #e0cffc; color: #4a148c; }
+.badge-despacho { background-color: #fde2e4; color: #6f42c1; }
+.badge-recibidor { background-color: #fff0db; color: #997404; }
+.badge-mascotas { background-color: #fde8d8; color: #984c0c; }
+.badge-terrazas { background-color: #d8f3dc; color: #2d6a4f; }
+.badge-despensa { background-color: #ffe5d9; color: #c44536; }
+.badge-garaje { background-color: #e9ecef; color: #495057; }
+.badge-trastero { background-color: #dee2e6; color: #343a40; }
+.badge-varias { background-color: #e7f5ff; color: #1864ab; }
 
-/* Etiquetas de Estado (Checkboxes visuales) */
-.estado {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-weight: 500;
-}
+.badge-expres { background-color: #e2e3e5; color: #41464b; }
+.badge-media { background-color: #fff3cd; color: #664d03; }
+.badge-profunda { background-color: #f8d7da; color: #842029; }
 
-.check-circle {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    border: 2px solid #ccc;
-    display: inline-block;
-}
-
-.estado-hecha .check-circle {
-    background-color: #198754;
-    border-color: #198754;
-    position: relative;
-}
-
-.estado-hecha .check-circle::after {
-    content: '✔';
-    color: white;
-    font-size: 12px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.estado-pendiente { color: #6c757d; }
-.estado-hecha { color: #198754; text-decoration: line-through; opacity: 0.7; }
 /* =========================================
-   ESTILOS PARA LA PÁGINA DE GASTOS
+   FECHAS Y TAREAS DE HOY
    ========================================= */
+.fecha-proxima {
+    font-weight: 600;
+    color: #495057;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
 
-/* Tarjetas de Resumen Financiero */
+.fecha-proxima.hoy {
+    color: #dc3545;
+    font-weight: bold;
+}
+
+.fecha-proxima.pasada {
+    color: #6c757d;
+    text-decoration: line-through;
+}
+
+.tarea-hoy {
+    background-color: #fff9db;
+}
+
+.tarea-hoy:hover {
+    background-color: #fff3bf;
+}
+
+.urgente {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #dc3545;
+    margin-right: 5px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.4; }
+    100% { opacity: 1; }
+}
+
+/* =========================================
+   IMÁGENES DE TAREAS Y CATEGORÍAS
+   ========================================= */
+.task-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    object-fit: cover;
+    vertical-align: middle;
+    margin-right: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    flex-shrink: 0;
+}
+
+.task-table td:first-child {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.category-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    object-fit: cover;
+    vertical-align: middle;
+    margin-right: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* =========================================
+   JAVASCRIPT - TAREAS HECHAS
+   ========================================= */
+.task-table tr.hecha {
+    background-color: #f8f9fa;
+    opacity: 0.6;
+}
+
+.task-table tr.hecha td:first-child {
+    text-decoration: line-through;
+    color: #6c757d;
+}
+
+.task-table tr.hecha .status {
+    background-color: #d1e7dd;
+    color: #0f5132;
+}
+
+/* =========================================
+   BOTÓN PRIMARIO
+   ========================================= */
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+}
+
+/* =========================================
+   PÁGINA DE GASTOS
+   ========================================= */
 .expense-summary {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -297,7 +401,6 @@ footer {
 .summary-card .amount.green { color: #198754; }
 .summary-card .amount.red { color: #dc3545; }
 
-/* Lista de Transacciones */
 .transaction-list {
     background: white;
     border-radius: 10px;
@@ -356,10 +459,10 @@ footer {
     font-size: 1.1rem;
     color: #2c3e50;
 }
-/* =========================================
-   ESTILOS PARA LA PÁGINA DE COMPRAS
-   ========================================= */
 
+/* =========================================
+   PÁGINA DE COMPRAS
+   ========================================= */
 .shopping-section {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -442,10 +545,26 @@ footer {
     color: #6c757d;
     font-style: italic;
 }
-/* =========================================
-   ESTILOS PARA EL FORMULARIO DE LOGIN
-   ========================================= */
 
+.shopping-item.comprado {
+    background-color: #f8f9fa;
+    opacity: 0.6;
+    border-left: 4px solid #28a745;
+}
+
+.shopping-item.comprado .item-name {
+    text-decoration: line-through;
+    color: #6c757d;
+}
+
+.shopping-item.comprado .item-quantity,
+.shopping-item.comprado .item-buyer {
+    color: #6c757d;
+}
+
+/* =========================================
+   FORMULARIOS (Login y Registro)
+   ========================================= */
 .login-container {
     max-width: 400px;
     margin: 3rem auto;
@@ -474,7 +593,7 @@ footer {
     border-radius: 5px;
     font-size: 1rem;
     transition: all 0.3s ease;
-    box-sizing: border-box; /* Importante para que el padding no rompa el ancho */
+    box-sizing: border-box;
 }
 
 .form-control:focus {
@@ -500,9 +619,6 @@ footer {
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
 }
-/* =========================================
-   ESTILO EXTRA PARA EL REGISTRO
-   ========================================= */
 
 .password-hint {
     font-size: 0.75rem;
@@ -536,65 +652,179 @@ footer {
 .terms-checkbox a:hover {
     text-decoration: underline;
 }
+
 /* =========================================
-   MEJORAS TABLA TAREAS - DÍA 3
+   MENÚ HAMBURGUESA
    ========================================= */
-
-/* Badges de Zonas ampliados (13 zonas de tu Excel) */
-.badge-cocina { background-color: #fff3cd; color: #664d03; }
-.badge-bano { background-color: #cff4fc; color: #055160; }
-.badge-dormitorios { background-color: #f8d7da; color: #842029; }
-.badge-salon { background-color: #d1e7dd; color: #0f5132; }
-.badge-lavanderia { background-color: #e0cffc; color: #4a148c; }
-.badge-despacho { background-color: #fde2e4; color: #6f42c1; }
-.badge-recibidor { background-color: #fff0db; color: #997404; }
-.badge-mascotas { background-color: #fde8d8; color: #984c0c; }
-.badbe-terrazas { background-color: #d8f3dc; color: #2d6a4f; }
-.badge-despensa { background-color: #ffe5d9; color: #c44536; }
-.badge-garaje { background-color: #e9ecef; color: #495057; }
-.badge-trastero { background-color: #dee2e6; color: #343a40; }
-.badge-varias { background-color: #e7f5ff; color: #1864ab; }
-
-/* Columna de fecha */
-.fecha-proxima {
-    font-weight: 600;
-    color: #495057;
-    font-size: 0.9rem;
-    white-space: nowrap;
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 22px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-right: 1rem;
 }
 
-.fecha-proxima.hoy {
-    color: #dc3545;
-    font-weight: bold;
+.hamburger span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: white;
+    border-radius: 2px;
+    transition: all 0.3s ease;
 }
 
-.fecha-proxima.pasada {
-    color: #6c757d;
-    text-decoration: line-through;
+.hamburger.active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
 }
 
-/* Fila destacada para tareas de hoy */
-.tarea-hoy {
-    background-color: #fff9db;
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
 }
 
-.tarea-hoy:hover {
-    background-color: #fff3bf;
+.hamburger.active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
 }
 
-/* Indicador de urgencia */
-.urgente {
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background-color: #dc3545;
-    margin-right: 5px;
-    animation: pulse 2s infinite;
-}
+/* =========================================
+   RESPONSIVE DESIGN - MÓVILES
+   ========================================= */
+@media (max-width: 768px) {
+    /* =========================================
+       NAV + HEADER FIJOS - ALTURAS AJUSTADAS
+       ========================================= */
+    
+    /* Nav más compacto */
+    nav {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        padding: 0.5rem 0.8rem !important;
+        min-height: 40px; /* Antes 70px, ahora más bajo */
+    }
+    
+    /* Header más compacto */
+    header {
+        position: sticky;
+        top: 40px; /* Coincide con la altura del nav */
+        z-index:35px;
+        padding: 0.6rem 0.6rem !important; /* Antes 1.5rem */
+    }
+    
+    header h1 {
+        font-size: 1.0rem; /* Antes 1.5rem */
+        margin-bottom: 0.2rem;
+    }
+    
+    header p {
+        font-size: 0.80rem; /* Antes 0.9rem */
+    }
+    
+    /* =========================================
+       RESTO DE ESTILOS MÓVIL (sin cambios)
+       ========================================= */
+    .hamburger {
+        display: flex;
+        width: 26px; /* Botón hamburguesa un poco más pequeño */
+        height: 20px;
+    }
+    
+    .nav-left {
+        display: flex;
+        align-items: center;
+        width: 100%;
+    }
+    
+    nav {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    
+    nav > div.nav-left {
+        justify-content: space-between;
+    }
+    
+    nav .nav-left a {
+        display: none;
+        width: 100%;
+        text-align: center;
+        padding: 0.8rem;
+        border-radius: 5px;
+    }
+    
+    nav .nav-left a.visible {
+        display: block;
+    }
+    
+    .btn-login {
+        width: auto !important;
+        padding: 0.4rem 0.8rem !important;
+        font-size: 0.8rem !important;
+        background: transparent !important;
+        border: 1px solid rgba(255, 255, 255, 0.3) !important;
+        color: white !important;
+        margin: 0 auto !important;
+    }
+    
+    .btn-login:hover {
+        background: rgba(255, 255, 255, 0.1) !important;
+        border-color: rgba(255, 255, 255, 0.5) !important;
+    }
 
-@keyframes pulse {
-    0% { opacity: 1; }
-    50% { opacity: 0.4; }
-    100% { opacity: 1; }
+    .cards, .shopping-section, .gastos-container {
+        grid-template-columns: 1fr !important; 
+    }
+    
+    nav a {
+        font-size: 0.9rem;
+        padding: 0.5rem;
+    }
+    
+    main {
+        padding: 1rem 0.5rem !important;
+    }
+    
+    .dashboard > div:first-child {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 1rem;
+    }
+    
+    .btn-primary {
+        width: 100%;
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+        text-align: center;
+    }
+    
+    .task-table th, .task-table td {
+        padding: 0.8rem 0.5rem;
+        font-size: 0.85rem;
+    }
+    
+    .shopping-category {
+        margin-bottom: 1rem;
+    }
+    
+    .shopping-category h3 {
+        font-size: 1.1rem;
+        padding: 0.8rem;
+    }
+    
+    .shopping-item {
+        padding: 0.8rem;
+    }
+    
+    .item-name {
+        font-size: 0.95rem;
+    }
+    
+    .table-container {
+        overflow-x: auto;
+        margin: 0 !important;
+    }
 }

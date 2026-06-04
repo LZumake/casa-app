@@ -7,12 +7,17 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <nav>
-    <div>
-        <a href="index.html">🏠 Inicio</a>
+ <nav>
+    <div class="nav-left">
+        <button class="hamburger" id="hamburger" aria-label="Abrir menú">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <a href="index.html"> Inicio</a>
         <a href="tareas.html">📋 Tareas</a>
         <a href="gastos.html">💰 Gastos</a>
-        <a href="compras.html">🛒 Compras</a>
+        <a href="compras.html" class="active">🛒 Compras</a>
     </div>
     <a href="login.html" class="btn-login">👤 Iniciar Sesión</a>
 </nav>
@@ -32,7 +37,9 @@
             
             <!-- Categoría: Frutería -->
             <div class="shopping-category">
-                <div class="category-header fruteria">🍎 Frutería</div>
+               <div class="category-header fruteria">
+             <img src="img/compras.webp" alt="Frutería" class="category-icon"> Frutería
+                </div>
                 
                 <div class="shopping-item">
                     <div class="item-left">
@@ -70,7 +77,9 @@
 
             <!-- Categoría: Lácteos -->
             <div class="shopping-category">
-                <div class="category-header lacteos">🥛 Lácteos</div>
+                <div class="category-header lacteos">
+    <img src="img/desayunar.webp" alt="Lácteos" class="category-icon"> Lácteos
+        </div>
                 
                 <div class="shopping-item">
                     <div class="item-left">
@@ -108,7 +117,9 @@
 
             <!-- Categoría: Limpieza -->
             <div class="shopping-category">
-                <div class="category-header limpieza">🧼 Limpieza</div>
+                <div class="category-header limpieza">
+    <img src="img/limpiar baño.webp" alt="Limpieza" class="category-icon"> Limpieza
+</div>
                 
                 <div class="shopping-item">
                     <div class="item-left">
@@ -146,7 +157,9 @@
 
             <!-- Categoría: Carnicería -->
             <div class="shopping-category">
-                <div class="category-header carniceria"> Carnicería</div>
+                <div class="category-header carniceria">
+    <img src="img/cocinar.webp" alt="Carnicería" class="category-icon"> Carnicería
+</div>
                 
                 <div class="shopping-item">
                     <div class="item-left">
@@ -177,5 +190,6 @@
     <footer>
         <p>Desarrollado por LZumake | Proyecto DAW</p>
     </footer>
+    <script src="js/app.js"></script>
 </body>
 </html>

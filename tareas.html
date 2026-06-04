@@ -8,17 +8,22 @@
 </head>
 <body>
     <nav>
-        <div>
-            <a href="index.html">🏠 Inicio</a>
-            <a href="tareas.html">📋 Tareas</a>
-            <a href="gastos.html">💰 Gastos</a>
-            <a href="compras.html"> Compras</a>
-        </div>
-        <a href="login.html" class="btn-login">👤 Iniciar Sesión</a>
-    </nav>
+    <div class="nav-left">
+        <button class="hamburger" id="hamburger" aria-label="Abrir menú">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <a href="index.html"> Inicio</a>
+        <a href="tareas.html" class="active">📋 Tareas</a>
+        <a href="gastos.html">💰 Gastos</a>
+        <a href="compras.html">🛒 Compras</a>
+    </div>
+    <a href="login.html" class="btn-login">👤 Iniciar Sesión</a>
+</nav>
     
     <header>
-        <h1>📋 Gestión de Tareas</h1>
+        <h1> Gestión de Tareas</h1>
         <p>Organización y limpieza del hogar</p>
     </header>
     
@@ -45,114 +50,158 @@
                     <tbody>
                         <!-- Tarea 1: Diaria - Compartidas -->
                         <tr class="tarea-hoy">
-                            <td><span class="urgente"></span>Hacer la cama, ventilar y ordenar dormitorio</td>
+                            <td>
+    <span class="urgente"></span>
+    <img src="img/Hacer cama.webp" alt="Hacer cama" class="task-icon">
+    Hacer la cama, ventilar y ordenar dormitorio
+</td>
                             <td><span class="badge badge-dormitorios">Dormitorios</span></td>
                             <td>
                                 <div class="user-cell">
-                                    <span class="avatar avatar-compartidas">C</span>
-                                    <span>Compartidas</span>
+                                    <span class="user-avatar user-compartidas">C</span>
+                                    <span class="user-name">Compartidas</span>
                                 </div>
                             </td>
                             <td><span class="badge badge-expres">Expres</span></td>
                             <td>Diaria</td>
                             <td class="fecha-proxima hoy">Hoy</td>
-                            <td><span class="status status-pending">Pendiente</span></td>
+                            <td>
+    				<input type="checkbox" style="margin-right: 8px;">
+   				 <span class="status status-pending">Pendiente</span>
+				</td>
                         </tr>
                         
                         <!-- Tarea 2: Diaria - Rosa -->
                         <tr>
-                            <td>Preparar el desayuno</td>
+                            <td>
+    <img src="img/desayunar.webp" alt="Desayuno" class="task-icon">
+    Preparar el desayuno
+</td>
                             <td><span class="badge badge-cocina">Cocina</span></td>
                             <td>
                                 <div class="user-cell">
-                                    <span class="avatar avatar-rosa">R</span>
-                                    <span>Rosa</span>
+                                    <span class="user-avatar user-rosa">R</span>
+                                    <span class="user-name">Rosa</span>
                                 </div>
                             </td>
                             <td><span class="badge badge-media">Media</span></td>
                             <td>Diaria</td>
                             <td class="fecha-proxima hoy">Hoy</td>
-                            <td><span class="status status-pending">Pendiente</span></td>
+                            <td>
+    				<input type="checkbox" style="margin-right: 8px;">
+    				<span class="status status-pending">Pendiente</span>
+				</td>
                         </tr>
 
                         <!-- Tarea 3: Diaria - Pedro -->
                         <tr>
-                            <td>Fregar platos y utensilios del desayuno</td>
+                            <td>
+    <img src="img/fregar platos.webp" alt="Fregar platos" class="task-icon">
+    Fregar platos y utensilios del desayuno
+</td>
                             <td><span class="badge badge-cocina">Cocina</span></td>
                             <td>
                                 <div class="user-cell">
-                                    <span class="avatar avatar-pedro">P</span>
-                                    <span>Pedro</span>
+                                    <span class="user-avatar user-pedro">P</span>
+                                    <span class="user-name">Pedro</span>
                                 </div>
                             </td>
                             <td><span class="badge badge-expres">Expres</span></td>
                             <td>Diaria</td>
                             <td class="fecha-proxima hoy">Hoy</td>
-                            <td><span class="status status-pending">Pendiente</span></td>
+                            <td>
+    				<input type="checkbox" style="margin-right: 8px;">
+    				<span class="status status-pending">Pendiente</span>
+			</td>
                         </tr>
 
                         <!-- Tarea 4: Diaria - Ana (Baño) -->
                         <tr>
-                            <td>Ordenar y repasar el baño por la mañana</td>
+                           <td>
+    <img src="img/limpiar baño.webp" alt="Limpiar baño" class="task-icon">
+    Ordenar y repasar el baño por la mañana
+</td>
                             <td><span class="badge badge-bano">Baño</span></td>
                             <td>
                                 <div class="user-cell">
-                                    <span class="avatar avatar-ana">A</span>
-                                    <span>Ana</span>
+                                    <span class="user-avatar user-ana">A</span>
+                                    <span class="user-name">Ana</span>
                                 </div>
                             </td>
                             <td><span class="badge badge-expres">Expres</span></td>
                             <td>Diaria</td>
                             <td class="fecha-proxima hoy">Hoy</td>
-                            <td><span class="status status-pending">Pendiente</span></td>
+                            <td>
+    				<input type="checkbox" style="margin-right: 8px;">
+    				<span class="status status-pending">Pendiente</span>
+				</td>
                         </tr>
 
                         <!-- Tarea 5: Semanal (Miércoles) - Compartidas -->
                         <tr class="tarea-hoy">
-                            <td><span class="urgente"></span>Cambiar sábanas</td>
+                            <<td>
+    <span class="urgente"></span>
+    <img src="img/Hacer cama.webp" alt="Cambiar sábanas" class="task-icon">
+    Cambiar sábanas
+</td>
                             <td><span class="badge badge-dormitorios">Dormitorios</span></td>
                             <td>
                                 <div class="user-cell">
-                                    <span class="avatar avatar-compartidas">C</span>
-                                    <span>Compartidas</span>
+                                    <span class="user-avatar user-compartidas">C</span>
+                                    <span class="user-name">Compartidas</span>
                                 </div>
                             </td>
                             <td><span class="badge badge-expres">Expres</span></td>
                             <td>Semanal (Mié)</td>
                             <td class="fecha-proxima hoy">Hoy</td>
-                            <td><span class="status status-pending">Pendiente</span></td>
+                           <td>
+    				<input type="checkbox" style="margin-right: 8px;">
+   				<span class="status status-pending">Pendiente</span>
+				</td>
                         </tr>
 
                         <!-- Tarea 6: Diaria - Miguel (Cena) -->
                         <tr>
-                            <td>Fregar platos y utensilios de la cena</td>
+                            <td>
+    <img src="img/fregar platos.webp" alt="Fregar platos" class="task-icon">
+    Fregar platos y utensilios de la cena
+</td>
                             <td><span class="badge badge-cocina">Cocina</span></td>
                             <td>
                                 <div class="user-cell">
-                                    <span class="avatar avatar-miguel">M</span>
-                                    <span>Miguel</span>
+                                    <span class="user-avatar user-miguel">M</span>
+                                    <span class="user-name">Miguel</span>
                                 </div>
                             </td>
                             <td><span class="badge badge-expres">Expres</span></td>
                             <td>Diaria</td>
                             <td class="fecha-proxima hoy">Hoy</td>
-                            <td><span class="status status-pending">Pendiente</span></td>
+                            <td>
+    				<input type="checkbox" style="margin-right: 8px;">
+    				<span class="status status-pending">Pendiente</span>
+				</td>
                         </tr>
 
                         <!-- Tarea 7: Diaria - Ana (Mascotas) -->
                         <tr>
-                            <td>Atender cuidados diarios de las mascotas</td>
+                            <td>
+    <img src="img/cuidados mascotas.webp" alt="Cuidados de mascotas" class="task-icon">
+    Atender cuidados diarios de las mascotas
+</td>
                             <td><span class="badge badge-mascotas">Mascotas</span></td>
                             <td>
                                 <div class="user-cell">
-                                    <span class="avatar avatar-ana">A</span>
-                                    <span>Ana</span>
+                                    <span class="user-avatar user-ana">A</span>
+                                    <span class="user-name">Ana</span>
                                 </div>
                             </td>
                             <td><span class="badge badge-media">Media</span></td>
                             <td>Diaria</td>
                             <td class="fecha-proxima hoy">Hoy</td>
-                            <td><span class="status status-pending">Pendiente</span></td>
+                            <td>
+    <input type="checkbox" style="margin-right: 8px;">
+    <span class="status status-pending">Pendiente</span>
+</td>
                         </tr>
 
                         <!-- Tarea 8: Mensual - Ana (Horno) -->
@@ -161,14 +210,17 @@
                             <td><span class="badge badge-cocina">Cocina</span></td>
                             <td>
                                 <div class="user-cell">
-                                    <span class="avatar avatar-ana">A</span>
-                                    <span>Ana</span>
+                                    <span class="user-avatar user-ana">A</span>
+                                    <span class="user-name">Ana</span>
                                 </div>
                             </td>
                             <td><span class="badge badge-media">Media</span></td>
                             <td>Mensual</td>
                             <td class="fecha-proxima">10/07/2026</td>
-                            <td><span class="status status-pending">Pendiente</span></td>
+                            <td>
+    				<input type="checkbox" style="margin-right: 8px;">
+    				<span class="status status-pending">Pendiente</span>
+				</td>
                         </tr>
                     </tbody>
                 </table>
@@ -179,5 +231,6 @@
     <footer>
         <p>Desarrollado por LZumake | Proyecto DAW</p>
     </footer>
+    <script src="js/app.js"></script>
 </body>
 </html>
