@@ -106,3 +106,301 @@ footer {
     padding: 2rem;
     margin-top: 3rem;
 }
+/* =========================================
+   ESTILOS PARA LA PÁGINA DE TAREAS
+   ========================================= */
+
+/* Contenedor de la tabla para que sea responsive en móviles */
+.table-container {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    overflow: hidden; /* Para que los bordes redondeados funcionen con la tabla */
+    overflow-x: auto; /* Permite scroll horizontal en pantallas pequeñas */
+}
+
+.task-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.task-table th {
+    background-color: #f8f9fa;
+    color: #495057;
+    font-weight: 600;
+    padding: 1rem;
+    border-bottom: 2px solid #e9ecef;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.task-table td {
+    padding: 1rem;
+    border-bottom: 1px solid #e9ecef;
+    color: #333;
+    vertical-align: middle;
+}
+
+.task-table tr:last-child td {
+    border-bottom: none;
+}
+
+.task-table tr:hover {
+    background-color: #f8f9fa; /* Efecto hover en las filas */
+}
+
+/* Etiqueta de Responsable (Avatar con iniciales) */
+.user-avatar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    color: white;
+    font-weight: bold;
+    font-size: 0.8rem;
+    margin-right: 8px;
+}
+
+.user-rosa { background-color: #e83e8c; }
+.user-pedro { background-color: #0d6efd; }
+.user-miguel { background-color: #198754; }
+.user-ana { background-color: #fd7e14; }
+.user-compartidas { background-color: #6c757d; }
+
+.user-name {
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+/* Etiquetas de Duración */
+.tag {
+    display: inline-block;
+    padding: 0.25rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.tag-expres { background-color: #d1e7dd; color: #0f5132; }
+.tag-media { background-color: #fff3cd; color: #664d03; }
+.tag-profunda { background-color: #f8d7da; color: #842029; }
+
+/* Etiquetas de Estado (Checkboxes visuales) */
+.estado {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+}
+
+.check-circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    display: inline-block;
+}
+
+.estado-hecha .check-circle {
+    background-color: #198754;
+    border-color: #198754;
+    position: relative;
+}
+
+.estado-hecha .check-circle::after {
+    content: '✔';
+    color: white;
+    font-size: 12px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.estado-pendiente { color: #6c757d; }
+.estado-hecha { color: #198754; text-decoration: line-through; opacity: 0.7; }
+/* =========================================
+   ESTILOS PARA LA PÁGINA DE GASTOS
+   ========================================= */
+
+/* Tarjetas de Resumen Financiero */
+.expense-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.summary-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    text-align: center;
+}
+
+.summary-card h3 {
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+}
+
+.summary-card .amount {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.summary-card .amount.green { color: #198754; }
+.summary-card .amount.red { color: #dc3545; }
+
+/* Lista de Transacciones */
+.transaction-list {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    overflow: hidden;
+}
+
+.transaction-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #e9ecef;
+    transition: background-color 0.2s;
+}
+
+.transaction-item:hover {
+    background-color: #f8f9fa;
+}
+
+.transaction-item:last-child {
+    border-bottom: none;
+}
+
+.transaction-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.transaction-icon {
+    font-size: 1.5rem;
+    background-color: #f1f3f5;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.transaction-details h4 {
+    font-size: 1rem;
+    color: #2c3e50;
+    margin-bottom: 0.2rem;
+}
+
+.transaction-details p {
+    font-size: 0.8rem;
+    color: #6c757d;
+    margin: 0;
+}
+
+.transaction-amount {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #2c3e50;
+}
+/* =========================================
+   ESTILOS PARA LA PÁGINA DE COMPRAS
+   ========================================= */
+
+.shopping-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.shopping-category {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    overflow: hidden;
+}
+
+.category-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.category-header.fruteria { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+.category-header.lacteos { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+.category-header.limpieza { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+.category-header.carniceria { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+
+.shopping-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid #e9ecef;
+    transition: background-color 0.2s;
+}
+
+.shopping-item:hover {
+    background-color: #f8f9fa;
+}
+
+.shopping-item:last-child {
+    border-bottom: none;
+}
+
+.item-left {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.item-checkbox {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: #667eea;
+}
+
+.item-name {
+    font-weight: 500;
+    color: #2c3e50;
+}
+
+.item-right {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.item-quantity {
+    background: #e9ecef;
+    color: #495057;
+    padding: 0.2rem 0.5rem;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.item-buyer {
+    font-size: 0.8rem;
+    color: #6c757d;
+    font-style: italic;
+}
