@@ -536,3 +536,65 @@ footer {
 .terms-checkbox a:hover {
     text-decoration: underline;
 }
+/* =========================================
+   MEJORAS TABLA TAREAS - DÍA 3
+   ========================================= */
+
+/* Badges de Zonas ampliados (13 zonas de tu Excel) */
+.badge-cocina { background-color: #fff3cd; color: #664d03; }
+.badge-bano { background-color: #cff4fc; color: #055160; }
+.badge-dormitorios { background-color: #f8d7da; color: #842029; }
+.badge-salon { background-color: #d1e7dd; color: #0f5132; }
+.badge-lavanderia { background-color: #e0cffc; color: #4a148c; }
+.badge-despacho { background-color: #fde2e4; color: #6f42c1; }
+.badge-recibidor { background-color: #fff0db; color: #997404; }
+.badge-mascotas { background-color: #fde8d8; color: #984c0c; }
+.badbe-terrazas { background-color: #d8f3dc; color: #2d6a4f; }
+.badge-despensa { background-color: #ffe5d9; color: #c44536; }
+.badge-garaje { background-color: #e9ecef; color: #495057; }
+.badge-trastero { background-color: #dee2e6; color: #343a40; }
+.badge-varias { background-color: #e7f5ff; color: #1864ab; }
+
+/* Columna de fecha */
+.fecha-proxima {
+    font-weight: 600;
+    color: #495057;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+.fecha-proxima.hoy {
+    color: #dc3545;
+    font-weight: bold;
+}
+
+.fecha-proxima.pasada {
+    color: #6c757d;
+    text-decoration: line-through;
+}
+
+/* Fila destacada para tareas de hoy */
+.tarea-hoy {
+    background-color: #fff9db;
+}
+
+.tarea-hoy:hover {
+    background-color: #fff3bf;
+}
+
+/* Indicador de urgencia */
+.urgente {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #dc3545;
+    margin-right: 5px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.4; }
+    100% { opacity: 1; }
+}
