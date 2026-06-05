@@ -24,10 +24,10 @@ nav {
     justify-content: space-between;
     align-items: center;
     min-height: 70px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-nav > div {
+nav>div {
     display: flex;
     gap: 2rem;
     align-items: center;
@@ -118,14 +118,14 @@ main {
     background: white;
     padding: 2rem;
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
 
 .card h3 {
@@ -156,7 +156,7 @@ footer {
 .table-container {
     background: white;
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     overflow: hidden;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
@@ -217,11 +217,25 @@ footer {
     flex-shrink: 0;
 }
 
-.user-compartidas { background-color: #6c757d; }
-.user-rosa { background-color: #e83e8c; }
-.user-pedro { background-color: #0d6efd; }
-.user-miguel { background-color: #198754; }
-.user-ana { background-color: #fd7e14; }
+.user-compartidas {
+    background-color: #6c757d;
+}
+
+.user-rosa {
+    background-color: #e83e8c;
+}
+
+.user-pedro {
+    background-color: #0d6efd;
+}
+
+.user-miguel {
+    background-color: #198754;
+}
+
+.user-ana {
+    background-color: #fd7e14;
+}
 
 .user-name {
     font-weight: 500;
@@ -239,23 +253,85 @@ footer {
     font-weight: 600;
 }
 
-.badge-cocina { background-color: #fff3cd; color: #664d03; }
-.badge-bano { background-color: #cff4fc; color: #055160; }
-.badge-dormitorios { background-color: #f8d7da; color: #842029; }
-.badge-salon { background-color: #d1e7dd; color: #0f5132; }
-.badge-lavanderia { background-color: #e0cffc; color: #4a148c; }
-.badge-despacho { background-color: #fde2e4; color: #6f42c1; }
-.badge-recibidor { background-color: #fff0db; color: #997404; }
-.badge-mascotas { background-color: #fde8d8; color: #984c0c; }
-.badge-terrazas { background-color: #d8f3dc; color: #2d6a4f; }
-.badge-despensa { background-color: #ffe5d9; color: #c44536; }
-.badge-garaje { background-color: #e9ecef; color: #495057; }
-.badge-trastero { background-color: #dee2e6; color: #343a40; }
-.badge-varias { background-color: #e7f5ff; color: #1864ab; }
+.badge-cocina {
+    background-color: #fff3cd;
+    color: #664d03;
+}
 
-.badge-expres { background-color: #e2e3e5; color: #41464b; }
-.badge-media { background-color: #fff3cd; color: #664d03; }
-.badge-profunda { background-color: #f8d7da; color: #842029; }
+.badge-bano {
+    background-color: #cff4fc;
+    color: #055160;
+}
+
+.badge-dormitorios {
+    background-color: #f8d7da;
+    color: #842029;
+}
+
+.badge-salon {
+    background-color: #d1e7dd;
+    color: #0f5132;
+}
+
+.badge-lavanderia {
+    background-color: #e0cffc;
+    color: #4a148c;
+}
+
+.badge-despacho {
+    background-color: #fde2e4;
+    color: #6f42c1;
+}
+
+.badge-recibidor {
+    background-color: #fff0db;
+    color: #997404;
+}
+
+.badge-mascotas {
+    background-color: #fde8d8;
+    color: #984c0c;
+}
+
+.badge-terrazas {
+    background-color: #d8f3dc;
+    color: #2d6a4f;
+}
+
+.badge-despensa {
+    background-color: #ffe5d9;
+    color: #c44536;
+}
+
+.badge-garaje {
+    background-color: #e9ecef;
+    color: #495057;
+}
+
+.badge-trastero {
+    background-color: #dee2e6;
+    color: #343a40;
+}
+
+.badge-varias {
+    background-color: #e7f5ff;
+    color: #1864ab;
+}
+
+.badge-expres {
+    background-color: #e2e3e5;
+    color: #41464b;
+}
+
+.badge-media {
+    background-color: #fff3cd;
+    color: #664d03;
+}
+
+.badge-profunda {
+    background-color: #f8d7da;
+    color: #842029;
+}
 
 /* =========================================
    FECHAS Y TAREAS DE HOY
@@ -296,9 +372,17 @@ footer {
 }
 
 @keyframes pulse {
-    0% { opacity: 1; }
-    50% { opacity: 0.4; }
-    100% { opacity: 1; }
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 
 /* =========================================
@@ -311,7 +395,7 @@ footer {
     object-fit: cover;
     vertical-align: middle;
     margin-right: 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     flex-shrink: 0;
 }
 
@@ -328,7 +412,7 @@ footer {
     object-fit: cover;
     vertical-align: middle;
     margin-right: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* =========================================
@@ -381,7 +465,7 @@ footer {
     background: white;
     padding: 1.5rem;
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     text-align: center;
 }
 
@@ -398,13 +482,18 @@ footer {
     color: #2c3e50;
 }
 
-.summary-card .amount.green { color: #198754; }
-.summary-card .amount.red { color: #dc3545; }
+.summary-card .amount.green {
+    color: #198754;
+}
+
+.summary-card .amount.red {
+    color: #dc3545;
+}
 
 .transaction-list {
     background: white;
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     overflow: hidden;
 }
 
@@ -472,7 +561,7 @@ footer {
 .shopping-category {
     background: white;
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     overflow: hidden;
 }
 
@@ -485,10 +574,21 @@ footer {
     font-size: 1.1rem;
 }
 
-.category-header.fruteria { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
-.category-header.lacteos { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
-.category-header.limpieza { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
-.category-header.carniceria { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+.category-header.fruteria {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.category-header.lacteos {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.category-header.limpieza {
+    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+}
+
+.category-header.carniceria {
+    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+}
 
 .shopping-item {
     display: flex;
@@ -571,7 +671,7 @@ footer {
     background: white;
     padding: 2.5rem;
     border-radius: 10px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
 }
 
 .form-group {
@@ -689,142 +789,39 @@ footer {
 .hamburger.active span:nth-child(3) {
     transform: translateY(-9px) rotate(-45deg);
 }
-
-/* =========================================
-   RESPONSIVE DESIGN - MÓVILES
+ /* =========================================
+   VALIDACIÓN DE FORMULARIOS
    ========================================= */
-@media (max-width: 768px) {
-    /* =========================================
-       NAV + HEADER FIJOS - ALTURAS AJUSTADAS
-       ========================================= */
-    
-    /* Nav más compacto */
-    nav {
-        position: sticky;
-        top: 0;
-        z-index: 100;
-        padding: 0.5rem 0.8rem !important;
-        min-height: 40px; /* Antes 70px, ahora más bajo */
-    }
-    
-    /* Header más compacto */
-    header {
-        position: sticky;
-        top: 40px; /* Coincide con la altura del nav */
-        z-index:35px;
-        padding: 0.6rem 0.6rem !important; /* Antes 1.5rem */
-    }
-    
-    header h1 {
-        font-size: 1.0rem; /* Antes 1.5rem */
-        margin-bottom: 0.2rem;
-    }
-    
-    header p {
-        font-size: 0.80rem; /* Antes 0.9rem */
-    }
-    
-    /* =========================================
-       RESTO DE ESTILOS MÓVIL (sin cambios)
-       ========================================= */
-    .hamburger {
-        display: flex;
-        width: 26px; /* Botón hamburguesa un poco más pequeño */
-        height: 20px;
-    }
-    
-    .nav-left {
-        display: flex;
-        align-items: center;
-        width: 100%;
-    }
-    
-    nav {
-        flex-wrap: wrap;
-        gap: 0.5rem;
-    }
-    
-    nav > div.nav-left {
-        justify-content: space-between;
-    }
-    
-    nav .nav-left a {
-        display: none;
-        width: 100%;
-        text-align: center;
-        padding: 0.8rem;
-        border-radius: 5px;
-    }
-    
-    nav .nav-left a.visible {
-        display: block;
-    }
-    
-    .btn-login {
-        width: auto !important;
-        padding: 0.4rem 0.8rem !important;
-        font-size: 0.8rem !important;
-        background: transparent !important;
-        border: 1px solid rgba(255, 255, 255, 0.3) !important;
-        color: white !important;
-        margin: 0 auto !important;
-    }
-    
-    .btn-login:hover {
-        background: rgba(255, 255, 255, 0.1) !important;
-        border-color: rgba(255, 255, 255, 0.5) !important;
-    }
+.error-message {
+    display: block;
+    color: #dc3545;
+    font-size: 0.8rem;
+    margin-top: 0.3rem;
+    font-weight: 500;
+    min-height: 1rem;
+}
 
-    .cards, .shopping-section, .gastos-container {
-        grid-template-columns: 1fr !important; 
-    }
-    
-    nav a {
-        font-size: 0.9rem;
-        padding: 0.5rem;
-    }
-    
-    main {
-        padding: 1rem 0.5rem !important;
-    }
-    
-    .dashboard > div:first-child {
-        flex-direction: column;
-        align-items: flex-start !important;
-        gap: 1rem;
-    }
-    
-    .btn-primary {
-        width: 100%;
-        padding: 0.6rem 1rem;
-        font-size: 0.9rem;
-        text-align: center;
-    }
-    
-    .task-table th, .task-table td {
-        padding: 0.8rem 0.5rem;
-        font-size: 0.85rem;
-    }
-    
-    .shopping-category {
-        margin-bottom: 1rem;
-    }
-    
-    .shopping-category h3 {
-        font-size: 1.1rem;
-        padding: 0.8rem;
-    }
-    
-    .shopping-item {
-        padding: 0.8rem;
-    }
-    
-    .item-name {
-        font-size: 0.95rem;
-    }
-    
-    .table-container {
-        overflow-x: auto;
-        margin: 0 !important;
-    }
+.form-control.error {
+    border-color: #dc3545;
+    background-color: #fff5f5;
+}
+
+.form-control.valid {
+    border-color: #198754;
+    background-color: #f8fff8;
+}
+
+.success-message {
+    background-color: #d1e7dd;
+    color: #0f5132;
+    padding: 1rem;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    display: none;
+}
+
+.success-message.visible {
+    display: block;
 }
