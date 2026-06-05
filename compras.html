@@ -5,22 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de la Compra - CasaApp</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
- <nav>
-    <div class="nav-left">
-        <button class="hamburger" id="hamburger" aria-label="Abrir menú">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        <a href="index.html"> Inicio</a>
-        <a href="tareas.html">📋 Tareas</a>
-        <a href="gastos.html">💰 Gastos</a>
-        <a href="compras.html" class="active">🛒 Compras</a>
-    </div>
-    <a href="login.html" class="btn-login">👤 Iniciar Sesión</a>
-</nav>
+    <nav>
+        <div class="nav-left">
+            <button class="hamburger" id="hamburger" aria-label="Abrir menú">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <a href="index.html"> Inicio</a>
+            <a href="tareas.html">📋 Tareas</a>
+            <a href="gastos.html">💰 Gastos</a>
+            <a href="compras.html" class="active">🛒 Compras</a>
+        </div>
+        <a href="login.html" class="btn-login"> Iniciar Sesión</a>
+    </nav>
     
     <header>
         <h1>🛒 Lista de la Compra</h1>
@@ -28,163 +29,165 @@
     </header>
     
     <main>
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-            <h2>Compra de esta semana</h2>
-            <button style="background: #667eea; color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer;">+ Añadir Producto</button>
-        </div>
-
-        <div class="shopping-section">
-            
-            <!-- Categoría: Frutería -->
-            <div class="shopping-category">
-               <div class="category-header fruteria">
-             <img src="img/compras.webp" alt="Frutería" class="category-icon"> Frutería
-                </div>
-                
-                <div class="shopping-item">
-                    <div class="item-left">
-                        <input type="checkbox" class="item-checkbox">
-                        <span class="item-name">Manzanas</span>
-                    </div>
-                    <div class="item-right">
-                        <span class="item-quantity">1 kg</span>
-                        <span class="item-buyer">Rosa</span>
-                    </div>
-                </div>
-
-                <div class="shopping-item">
-                    <div class="item-left">
-                        <input type="checkbox" class="item-checkbox">
-                        <span class="item-name">Plátanos</span>
-                    </div>
-                    <div class="item-right">
-                        <span class="item-quantity">6 uds</span>
-                        <span class="item-buyer">Rosa</span>
-                    </div>
-                </div>
-
-                <div class="shopping-item">
-                    <div class="item-left">
-                        <input type="checkbox" class="item-checkbox" checked>
-                        <span class="item-name">Tomates</span>
-                    </div>
-                    <div class="item-right">
-                        <span class="item-quantity">4 uds</span>
-                        <span class="item-buyer">Ana</span>
-                    </div>
-                </div>
+        <section class="dashboard">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+                <h2>Compra de esta semana</h2>
+                <button class="btn-primary">+ Añadir Producto</button>
             </div>
 
-            <!-- Categoría: Lácteos -->
-            <div class="shopping-category">
-                <div class="category-header lacteos">
-    <img src="img/desayunar.webp" alt="Lácteos" class="category-icon"> Lácteos
-        </div>
+            <div class="shopping-section">
                 
-                <div class="shopping-item">
-                    <div class="item-left">
-                        <input type="checkbox" class="item-checkbox">
-                        <span class="item-name">Leche entera</span>
+                <!-- Categoría: Frutería -->
+                <div class="shopping-category">
+                    <div class="category-header fruteria">
+                        <img src="img/compras.webp" alt="Frutería" class="category-icon"> Frutería
                     </div>
-                    <div class="item-right">
-                        <span class="item-quantity">2 L</span>
-                        <span class="item-buyer">Pedro</span>
+                    
+                    <div class="shopping-item">
+                        <div class="item-left">
+                            <input type="checkbox" class="item-checkbox">
+                            <span class="item-name">Manzanas</span>
+                        </div>
+                        <div class="item-right">
+                            <span class="item-quantity">1 kg</span>
+                            <span class="item-buyer">Rosa</span>
+                        </div>
+                    </div>
+
+                    <div class="shopping-item">
+                        <div class="item-left">
+                            <input type="checkbox" class="item-checkbox">
+                            <span class="item-name">Plátanos</span>
+                        </div>
+                        <div class="item-right">
+                            <span class="item-quantity">6 uds</span>
+                            <span class="item-buyer">Rosa</span>
+                        </div>
+                    </div>
+
+                    <div class="shopping-item">
+                        <div class="item-left">
+                            <input type="checkbox" class="item-checkbox" checked>
+                            <span class="item-name">Tomates</span>
+                        </div>
+                        <div class="item-right">
+                            <span class="item-quantity">4 uds</span>
+                            <span class="item-buyer">Ana</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="shopping-item">
-                    <div class="item-left">
-                        <input type="checkbox" class="item-checkbox" checked>
-                        <span class="item-name">Yogures naturales</span>
+                <!-- Categoría: Lácteos -->
+                <div class="shopping-category">
+                    <div class="category-header lacteos">
+                        <img src="img/desayunar.webp" alt="Lácteos" class="category-icon"> Lácteos
                     </div>
-                    <div class="item-right">
-                        <span class="item-quantity">8 uds</span>
-                        <span class="item-buyer">Pedro</span>
+                    
+                    <div class="shopping-item">
+                        <div class="item-left">
+                            <input type="checkbox" class="item-checkbox">
+                            <span class="item-name">Leche entera</span>
+                        </div>
+                        <div class="item-right">
+                            <span class="item-quantity">2 L</span>
+                            <span class="item-buyer">Pedro</span>
+                        </div>
+                    </div>
+
+                    <div class="shopping-item">
+                        <div class="item-left">
+                            <input type="checkbox" class="item-checkbox" checked>
+                            <span class="item-name">Yogures naturales</span>
+                        </div>
+                        <div class="item-right">
+                            <span class="item-quantity">8 uds</span>
+                            <span class="item-buyer">Pedro</span>
+                        </div>
+                    </div>
+
+                    <div class="shopping-item">
+                        <div class="item-left">
+                            <input type="checkbox" class="item-checkbox">
+                            <span class="item-name">Queso manchego</span>
+                        </div>
+                        <div class="item-right">
+                            <span class="item-quantity">250 g</span>
+                            <span class="item-buyer">Miguel</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="shopping-item">
-                    <div class="item-left">
-                        <input type="checkbox" class="item-checkbox">
-                        <span class="item-name">Queso manchego</span>
+                <!-- Categoría: Limpieza -->
+                <div class="shopping-category">
+                    <div class="category-header limpieza">
+                        <img src="img/limpiar baño.webp" alt="Limpieza" class="category-icon"> Limpieza
                     </div>
-                    <div class="item-right">
-                        <span class="item-quantity">250 g</span>
-                        <span class="item-buyer">Miguel</span>
+                    
+                    <div class="shopping-item">
+                        <div class="item-left">
+                            <input type="checkbox" class="item-checkbox">
+                            <span class="item-name">Detergente ropa</span>
+                        </div>
+                        <div class="item-right">
+                            <span class="item-quantity">1 ud</span>
+                            <span class="item-buyer">Compartidas</span>
+                        </div>
+                    </div>
+
+                    <div class="shopping-item">
+                        <div class="item-left">
+                            <input type="checkbox" class="item-checkbox">
+                            <span class="item-name">Papel higiénico</span>
+                        </div>
+                        <div class="item-right">
+                            <span class="item-quantity">12 rollos</span>
+                            <span class="item-buyer">Compartidas</span>
+                        </div>
+                    </div>
+
+                    <div class="shopping-item">
+                        <div class="item-left">
+                            <input type="checkbox" class="item-checkbox">
+                            <span class="item-name">Bolsas de basura</span>
+                        </div>
+                        <div class="item-right">
+                            <span class="item-quantity">1 pack</span>
+                            <span class="item-buyer">Compartidas</span>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Categoría: Carnicería -->
+                <div class="shopping-category">
+                    <div class="category-header carniceria">
+                        <img src="img/cocinar.webp" alt="Carnicería" class="category-icon"> Carnicería
+                    </div>
+                    
+                    <div class="shopping-item">
+                        <div class="item-left">
+                            <input type="checkbox" class="item-checkbox">
+                            <span class="item-name">Pechugas de pollo</span>
+                        </div>
+                        <div class="item-right">
+                            <span class="item-quantity">500 g</span>
+                            <span class="item-buyer">Ana</span>
+                        </div>
+                    </div>
+
+                    <div class="shopping-item">
+                        <div class="item-left">
+                            <input type="checkbox" class="item-checkbox">
+                            <span class="item-name">Carne picada</span>
+                        </div>
+                        <div class="item-right">
+                            <span class="item-quantity">400 g</span>
+                            <span class="item-buyer">Miguel</span>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-
-            <!-- Categoría: Limpieza -->
-            <div class="shopping-category">
-                <div class="category-header limpieza">
-    <img src="img/limpiar baño.webp" alt="Limpieza" class="category-icon"> Limpieza
-</div>
-                
-                <div class="shopping-item">
-                    <div class="item-left">
-                        <input type="checkbox" class="item-checkbox">
-                        <span class="item-name">Detergente ropa</span>
-                    </div>
-                    <div class="item-right">
-                        <span class="item-quantity">1 ud</span>
-                        <span class="item-buyer">Compartidas</span>
-                    </div>
-                </div>
-
-                <div class="shopping-item">
-                    <div class="item-left">
-                        <input type="checkbox" class="item-checkbox">
-                        <span class="item-name">Papel higiénico</span>
-                    </div>
-                    <div class="item-right">
-                        <span class="item-quantity">12 rollos</span>
-                        <span class="item-buyer">Compartidas</span>
-                    </div>
-                </div>
-
-                <div class="shopping-item">
-                    <div class="item-left">
-                        <input type="checkbox" class="item-checkbox">
-                        <span class="item-name">Bolsas de basura</span>
-                    </div>
-                    <div class="item-right">
-                        <span class="item-quantity">1 pack</span>
-                        <span class="item-buyer">Compartidas</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Categoría: Carnicería -->
-            <div class="shopping-category">
-                <div class="category-header carniceria">
-    <img src="img/cocinar.webp" alt="Carnicería" class="category-icon"> Carnicería
-</div>
-                
-                <div class="shopping-item">
-                    <div class="item-left">
-                        <input type="checkbox" class="item-checkbox">
-                        <span class="item-name">Pechugas de pollo</span>
-                    </div>
-                    <div class="item-right">
-                        <span class="item-quantity">500 g</span>
-                        <span class="item-buyer">Ana</span>
-                    </div>
-                </div>
-
-                <div class="shopping-item">
-                    <div class="item-left">
-                        <input type="checkbox" class="item-checkbox">
-                        <span class="item-name">Carne picada</span>
-                    </div>
-                    <div class="item-right">
-                        <span class="item-quantity">400 g</span>
-                        <span class="item-buyer">Miguel</span>
-                    </div>
-                </div>
-            </div>
-
-        </div>
+        </section>
     </main>
     
     <footer>

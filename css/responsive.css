@@ -48,18 +48,72 @@
         width: 100%;
         justify-content: space-between;
     }
-    
-    nav .nav-left a {
-        display: none;
-        width: 100%;
-        text-align: center;
-        padding: 0.8rem;
-        border-radius: 5px;
+/* Menú hamburguesa - botón */
+.hamburger {
+    display: flex;
+    width: 26px;
+    height: 20px;
+    cursor: pointer;
+    z-index: 101;
+}
+
+/* Contenedor de enlaces - oculto por defecto */
+.nav-left a {
+    display: none;
+}
+
+/* Cuando el menú está abierto */
+nav.open .nav-left {
+    position: fixed;
+    top: 40px; /* Altura del nav */
+    left: 0;
+    width: 100px;
+    height: calc(100vh - 40px);
+    background-color: #2c3e50;
+    flex-direction: column;
+    padding: 1rem 0;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 100;
+    animation: slideIn 0.3s ease;
+}
+
+/* Animación de entrada */
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
     }
-    
-    nav .nav-left a.visible {
-        display: block;
+    to {
+        transform: translateX(0);
     }
+}
+
+/* Enlaces del menú */
+nav.open .nav-left a {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 1rem 1.5rem;
+    border-radius: 0;
+    margin: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+nav.open .nav-left a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+nav.open .nav-left a.active {
+    background-color: rgba(255, 255, 255, 0.2);
+    font-weight: bold;
+}
+
+/* Botón de login en el menú */
+nav.open .btn-login {
+    display: block;
+    width: auto;
+    margin: 1rem 1.5rem;
+    text-align: center;
+}
     
     .btn-login {
         width: auto !important;

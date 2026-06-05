@@ -45,16 +45,20 @@ document.addEventListener('DOMContentLoaded', function() {
 // MENÚ HAMBURGUESA
 // ============================================
 const hamburger = document.getElementById('hamburger');
-const navLinks = document.querySelectorAll('.nav-left a');
+const nav = document.querySelector('nav');
 
 if (hamburger) {
     hamburger.addEventListener('click', function() {
-        // Alternar la clase 'active' en el botón (para la animación X)
         this.classList.toggle('active');
-        
-        // Mostrar/ocultar los enlaces del menú
-        navLinks.forEach(function(link) {
-            link.classList.toggle('visible');
+        nav.classList.toggle('open');
+    });
+    
+    // Cerrar menú al hacer clic en un enlace
+    const navLinks = document.querySelectorAll('nav .nav-left a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            hamburger.classList.remove('active');
+            nav.classList.remove('open');
         });
     });
 }

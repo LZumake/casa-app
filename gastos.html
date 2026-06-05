@@ -5,31 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gastos - CasaApp</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
-   <nav>
-    <div class="nav-left">
-        <button class="hamburger" id="hamburger" aria-label="Abrir menú">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        <a href="index.html"> Inicio</a>
-        <a href="tareas.html">📋 Tareas</a>
-        <a href="gastos.html" class="active">💰 Gastos</a>
-        <a href="compras.html">🛒 Compras</a>
-    </div>
-    <a href="login.html" class="btn-login">👤 Iniciar Sesión</a>
-</nav>
+    <nav>
+        <div class="nav-left">
+            <button class="hamburger" id="hamburger" aria-label="Abrir menú">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <a href="index.html"> Inicio</a>
+            <a href="tareas.html">📋 Tareas</a>
+            <a href="gastos.html" class="active">💰 Gastos</a>
+            <a href="compras.html">🛒 Compras</a>
+        </div>
+        <a href="login.html" class="btn-login"> Iniciar Sesión</a>
+    </nav>
     
     <header>
-        <h1> Control de Gastos</h1>
+        <h1>💰 Control de Gastos</h1>
         <p>Transparencia total en los gastos del hogar</p>
     </header>
     
     <main>
-        <!-- Resumen Superior -->
         <section class="dashboard">
+            <h2>Resumen del Mes</h2>
+            
+            <!-- Resumen Superior -->
             <div class="expense-summary">
                 <div class="summary-card">
                     <h3>Gasto Total del Mes</h3>
@@ -46,9 +49,9 @@
             </div>
 
             <!-- Lista de Movimientos -->
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 1rem;">
                 <h2>Movimientos recientes</h2>
-                <button style="background: #667eea; color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer;">+ Añadir Gasto</button>
+                <button class="btn-primary">+ Añadir Gasto</button>
             </div>
 
             <div class="transaction-list">
@@ -56,7 +59,7 @@
                 <!-- Movimiento 1 -->
                 <div class="transaction-item">
                     <div class="transaction-info">
-                        <div class="transaction-icon"></div>
+                        <div class="transaction-icon">🛒</div>
                         <div class="transaction-details">
                             <h4>Compra Supermercado</h4>
                             <p>Pagado por <strong>Rosa</strong> · 10 Jun 2025</p>
@@ -120,5 +123,6 @@
     <footer>
         <p>Desarrollado por LZumake | Proyecto DAW</p>
     </footer>
+    <script src="js/app.js"></script>
 </body>
 </html>
