@@ -156,3 +156,56 @@ function limpiarErrores() {
         error.textContent = '';
     });
 }
+// ============================================
+// CONTADOR DE TAREAS COMPLETADAS
+// ============================================
+
+function updateTaskProgress() {
+    // Obtener todos los checkboxes de la tabla de tareas
+    const checkboxes = document.querySelectorAll('.task-table input[type="checkbox"]');
+    const totalTasks = checkboxes.length;
+    
+    // Contar cuántas están marcadas
+    let completedTasks = 0;
+    checkboxes.forEach(checkbox => {
+        if (checkbox.checked) {
+            completedTasks++;
+        }
+    });
+    
+    // Calcular porcentaje
+    const percentage = totalTasks > 0 ? Math.round((completedTasks / totalTasks) * 100) : 0;
+    
+    // Actualizar el texto
+    const completedText = document.getElementById('tasks-completed');
+    const percentageText = document.getElementById('tasks-percentage');
+    const progressFill = document.getElementById('progress-fill');
+    
+    if (completedText) {
+        completedText.textContent = `${completedTasks} de ${totalTasks} tareas completadas`;
+    }
+    
+    if (percentageText) {
+        percentageText.textContent = `${percentage}%`;
+    }
+    
+    if (progressFill) {
+        progressFill.style.width = `${percentage}%`;
+        
+        // Si están todas completadas, la barra se pone verde
+        if (percentage === 100) {
+            progressFill.classList.add('complete');
+        } else {
+            progressFill.classList.remove('complete');
+        }
+    }
+}
+
+// Añadir event listeners a todos los checkboxes de tareas
+const taskCheckboxes = document.querySelectorAll('.task-table input[type="checkbox"]');
+taskCheckboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', updateTaskProgress);
+});
+
+// Llamar a la función al cargar la página para inicializar
+updateTaskProgress();

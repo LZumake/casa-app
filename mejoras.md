@@ -36,3 +36,48 @@ Esta lista recoge pequeños detalles de UX/UI y CSS para pulir la app cuando ten
 ## 🎨 General
 - [ ] **Consistencia de espaciado:** Unificar padding/margin entre páginas
 - [ ] **Transiciones suaves:** Añadir animaciones al cambiar de página
+[# 📋 Backlog de Mejoras - CasaApp
+
+## 🔴 Prioridad Alta
+
+### 1. Menú de navegación - Botón "Inicio" fuera de pantalla en móvil
+**Problema**: En pantallas pequeñas (móvil 375px), el botón "Inicio" del menú de navegación queda fuera de la pantalla a la derecha. Hay que hacer scroll horizontal para verlo.
+
+**Dónde ocurre**: 
+- index.html
+- todas las páginas
+- En móvil (375px o menos)
+
+**Impacto**: Mala experiencia de usuario, no se ve el primer elemento del menú
+
+**Posible solución**: 
+- Ajustar el `flex-wrap` del nav
+- Reducir el padding/gap entre elementos del menú
+- Hacer que el menú hamburguesa se muestre antes (en breakpoint más alto)
+- Ajustar `overflow-x: hidden` en el body/nav
+
+**Reproducir**: 
+1. Abrir cualquier página en móvil (375px)
+2. Mirar el menú de navegación
+3. El botón "Inicio" está cortado a la derecha
+
+**Fecha detectado**: 06/06/2026
+**Estado**: ❌ Pendiente
+
+---
+
+## 🟡 Prioridad Media
+
+*(Aquí irán los issues de prioridad media)*
+
+---
+
+## 🟢 Prioridad Baja
+
+*(Aquí irán los issues de prioridad baja)*
+
+---
+
+## 💡 Ideas de mejora
+
+*(Aquí irán las ideas para futuras funcionalidades)*](../Notas/progreso.md)
