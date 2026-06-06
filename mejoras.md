@@ -1,83 +1,84 @@
-# 🛠️ Lista de Mejoras y Detalles (Backlog)
+# 📋 Backlog de Mejoras y Evolución - CasaApp
 
-Esta lista recoge pequeños detalles de UX/UI y CSS para pulir la app cuando tengamos un hueco, sin que frenen el desarrollo principal.
+## 🚀 Fase 1: Mejoras de UX/UI y Corrección de Bugs (Prioridad Alta)
 
-## 📋 Tabla de Tareas (`tareas.html`)
-- [ ] **Cabecera fija (Sticky Header):** Hacer que la fila de títulos (TAREA, ZONA, etc.) se quede fija arriba cuando se hace scroll vertical en la tabla.
-- [ ] **Tamaño de iconos:** Ajustar el tamaño de las imágenes (`.task-icon`). Ahora mismo algunas se ven un poco grandes (40px). Probar a bajarlas a 32px o 36px para que sean más uniformes con los avatares.
-- [ ] **Alineación vertical:** Asegurar que la imagen, el punto rojo de urgencia y el texto de la tarea estén perfectamente centrados en el eje vertical.
-- [ ] **Imagen de Mascotas:** Cambiar la imagen actual (lavar ropa) por la de "cepillar kooper" o "bañar a kooper" que tenemos en la carpeta `img`.
+### 1. Menú de navegación - Scroll horizontal en móvil
+**Problema**: En pantallas pequeñas (375px), los enlaces del menú superior se salen de la pantalla y obligan a hacer scroll lateral.
+**Solución**: Ajustar `flex-wrap`, reducir `gap`/`padding` en el `@media (max-width: 480px)` o forzar el menú hamburguesa antes.
+**Estado**: ❌ Pendiente
 
-## 🛒 Lista de la Compra (`compras.html`)
-- [ ] **Espaciado:** Revisar el margen entre el icono de la categoría y el texto del título.
-- [ ] **Hover en tarjetas:** Añadir un pequeño efecto (sombra o elevación) al pasar el ratón por encima de las tarjetas de productos.
+### 2. Cierre del menú al tocar fuera (Overlay)
+**Problema**: El menú hamburguesa (drawer lateral) solo se cierra al hacer clic en un enlace o en la "X". 
+**Solución**: Añadir un fondo semitransparente (overlay) que cubra el resto de la pantalla. Al hacer clic en ese fondo, el menú se cierra.
+**Estado**: ❌ Pendiente
 
-## 📱 Responsive / Móvil
-- [ ] **Menú Hamburguesa:** (Fase futura) Sustituir el menú apilado por un icono  que despliegue las opciones.
-- [ ] **Tabla en móvil:** Comprobar si el scroll horizontal de la tabla se entiende bien en pantallas muy pequeñas o si es mejor cambiar a vista de tarjetas.
-# 🛠️ Lista de Mejoras y Detalles (Backlog)
+### 3. Botón "Iniciar Sesión" visible con el menú abierto
+**Problema**: En móvil, cuando el menú lateral está abierto, el botón de "Iniciar Sesión" sigue visible y puede estorbar.
+**Solución**: Añadir `nav.open .btn-login { display: none; }` en el CSS responsive.
+**Estado**: ❌ Pendiente
 
-##  Tabla de Tareas (`tareas.html`)
-- [x] **Cabecera fija (Sticky Header):** ✅ Intentado pero requiere refactorizar estructura HTML
-- [ ] **Tamaño de iconos:** Ajustar el tamaño de las imágenes (`.task-icon`). Probar 32px o 36px
-- [ ] **Alineación vertical:** Centrar imagen, punto rojo y texto en el eje vertical
-- [ ] **Imagen de Mascotas:** Cambiar por "cepillar kooper" o "bañar a kooper"
-
-##  Lista de la Compra (`compras.html`)
-- [ ] **Espaciado:** Revisar margen entre icono de categoría y texto del título
-- [ ] **Hover en tarjetas:** Añadir efecto sombra al pasar el ratón
-
-## 📱 Responsive / Móvil
-- [x] **Menú Hamburguesa:** ✅ Implementado pero con problemas de UX
-- [ ] **Nav fijo en móvil:** El menú superior desaparece al hacer scroll. Necesita `position: sticky` o `fixed`
-- [ ] **Reducir márgenes laterales en móvil:** El contenido tiene demasiado padding y "baila" al desplazarse
-- [ ] **Tabla en móvil:** Comprobar si el scroll horizontal se entiende bien o cambiar a vista de tarjetas
-
-## 🎨 General
-- [ ] **Consistencia de espaciado:** Unificar padding/margin entre páginas
-- [ ] **Transiciones suaves:** Añadir animaciones al cambiar de página
-[# 📋 Backlog de Mejoras - CasaApp
-
-## 🔴 Prioridad Alta
-
-### 1. Menú de navegación - Botón "Inicio" fuera de pantalla en móvil
-**Problema**: En pantallas pequeñas (móvil 375px), el botón "Inicio" del menú de navegación queda fuera de la pantalla a la derecha. Hay que hacer scroll horizontal para verlo.
-
-**Dónde ocurre**: 
-- index.html
-- todas las páginas
-- En móvil (375px o menos)
-
-**Impacto**: Mala experiencia de usuario, no se ve el primer elemento del menú
-
-**Posible solución**: 
-- Ajustar el `flex-wrap` del nav
-- Reducir el padding/gap entre elementos del menú
-- Hacer que el menú hamburguesa se muestre antes (en breakpoint más alto)
-- Ajustar `overflow-x: hidden` en el body/nav
-
-**Reproducir**: 
-1. Abrir cualquier página en móvil (375px)
-2. Mirar el menú de navegación
-3. El botón "Inicio" está cortado a la derecha
-
-**Fecha detectado**: 06/06/2026
+### 4. UI de Tarjetas de Tareas (Mejora visual)
+**Problema**: Las tarjetas actuales pueden quedar muy vacías o desordenadas.
+**Solución**: Mostrar la descripción completa dentro de la tarjeta minimizada, usando iconos para optimizar el espacio y que se vea todo de un vistazo.
 **Estado**: ❌ Pendiente
 
 ---
 
-## 🟡 Prioridad Media
+## 🗺️ Fase 2: Rediseño de la Navegación (El Hub de Tareas)
 
-*(Aquí irán los issues de prioridad media)*
+### 5. Lista de Tareas interminable (Falta de filtros)
+**Problema**: Todas las tareas se muestran en una sola lista larga. Es muy pesado hacer scroll.
+**Solución**: Convertir `tareas.html` en un "Hub de navegación" (Dashboard de filtros) con botones grandes en lugar de la lista directa.
+**Estado**: ❌ Pendiente (Planificado para Sesión 7)
+
+### 6. Nuevos botones del Hub de Tareas
+En lugar de la lista, la página de Tareas tendrá 4 accesos directos:
+1. **Tareas Programadas**: Abrir por filtro de usuario (aparece predeterminado el usuario logueado, pero se pueden consultar las de otros o todas).
+2. **Zonas**: Ver todas las tareas programadas en una zona concreta y detectar cuáles faltan por programar.
+3. **Presupuesto**: Introducir gastos fijos y variables para calcular presupuestos, control de gastos y cuánto tiene que pagar cada uno cada mes.
+4. **Lista de la compra**: Acceso directo a la lista de compras.
+**Estado**:  Pendiente
 
 ---
 
-## 🟢 Prioridad Baja
+## 🏠 Fase 3: Nuevas Funcionalidades (App Integral de Convivencia)
 
-*(Aquí irán los issues de prioridad baja)*
+### 7. Onboarding / Configuración inicial de la Casa
+**Idea**: Que el usuario tenga que "dar de alta" su casa al registrarse (número de habitaciones, baños, zonas, etc.) para dimensionar y personalizar las tareas automáticamente.
+**Estado**: 💡 Idea
+
+### 8. Perfil de Usuario y Dashboard Personal
+**Idea**: Crear una página de perfil desde la que el usuario pueda acceder a sus registros personales:
+- Calendario imprimible (semanal/mensual) de sus tareas.
+- Agenda personal con calendario para programar eventos propios.
+- Lista de deseos ("Mis cosas").
+- Estadísticas personales.
+**Objetivo**: Que el usuario use la app para todo lo que necesite en su día a día, no solo para las tareas compartidas.
+**Estado**: 💡 Idea
+
+### 9. Botón de Acción Global (Distribuidor en Inicio)
+**Idea**: Añadir un botón destacado (o un FAB - Floating Action Button con un "+") en la página de Inicio.
+**Función**: Actuar como un "distribuidor de tráfico" hacia los formularios específicos de cada sección. Según lo que elija el usuario, le llevará a su página correspondiente:
+- 📋 **Tarea programada** ➡️ Lleva a `tareas.html` (formulario de zona, responsable, frecuencia).
+- 📅 **Evento / Recordatorio** ➡️ Lleva a `agenda.html` (nueva tabla/página para calendario personal).
+- 🛒 **Compra** ➡️ Lleva a `compras.html` (formulario de producto, cantidad).
+- 💰 **Gasto** ️ Lleva a `gastos.html` (formulario de importe, concepto).
+**Por qué así**: No usamos un formulario modal dinámico porque necesitamos que los datos se guarden en sus respectivas tablas estructuradas. Esto es **imprescindible** para poder cruzar la información y calcular los **presupuestos mensuales** reales de la casa.
+**Estado**: 💡 Idea
 
 ---
 
-## 💡 Ideas de mejora
+##  Fase 4: Nivel Pro (Ideas a futuro)
 
-*(Aquí irán las ideas para futuras funcionalidades)*](../Notas/progreso.md)
+### 10. Persistencia de datos (LocalStorage)
+**Idea**: Hacer que al marcar un checkbox de una tarea o de la lista de la compra, se quede guardado en el navegador. Si recargo la página o vuelvo mañana, seguirá marcado.
+**Tecnología**: JavaScript `localStorage`.
+
+### 11. Modo Oscuro (Dark Mode)
+**Idea**: Añadir un pequeño interruptor (toggle) en el menú o en el footer para cambiar entre tema claro y oscuro.
+
+### 12. Pantalla de carga (Splash Screen)
+**Idea**: Mostrar el logo de CasaApp durante 1 segundo al abrir la app en el móvil, mientras cargan los recursos. Da sensación de app nativa.
+
+---
+*Última actualización: 06/06/2026 (Sesión 6 - Ideas nocturnas y arquitectura de distribuidor incluidas)*
