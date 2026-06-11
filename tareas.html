@@ -40,8 +40,8 @@
                         </div>
                     </div>
                     <div class="dropdown-divider"></div>
-                    <a href="perfil.html" class="dropdown-item"> Mi Perfil</a>
-                    <a href="configuracion.html" class="dropdown-item">️ Configuración</a>
+                    <a href="perfil.html" class="dropdown-item">👤 Mi Perfil</a>
+                    <a href="configuracion.html" class="dropdown-item">⚙️ Configuración</a>
                     <button class="dropdown-item dropdown-toggle">
                         <span>📍 GPS</span>
                         <span class="toggle-switch">
@@ -70,63 +70,78 @@
     </header>
 
     <!-- Contenido Principal -->
-    <main>
-        <section class="dashboard">
-            <!-- Header de la sección con título y botón -->
-            <div class="tareas-header">
-                <h2>Panel de Tareas del Hogar</h2>
-                <button class="btn-primary">+ Nueva Tarea</button>
+    <!-- Contenido Principal -->
+<main>
+    <section class="dashboard">
+        <!-- Contador de Progreso -->
+        <div class="progress-container">
+            <div class="progress-info">
+                <span id="tasks-completed">0 de 0 tareas completadas</span>
+                <span id="tasks-percentage">0%</span>
             </div>
-
-            <!-- Filtros por Responsable -->
-            <div class="filtros-container">
-                <span class="filtros-label">Filtrar por:</span>
-                <div class="filtros-tareas">
-                    <button class="btn-filtro active" data-responsable="todos">Todos</button>
-                    <button class="btn-filtro" data-responsable="Rosa">Rosa</button>
-                    <button class="btn-filtro" data-responsable="Pedro">Pedro</button>
-                    <button class="btn-filtro" data-responsable="Ana">Ana</button>
-                    <button class="btn-filtro" data-responsable="Miguel">Miguel</button>
-                </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
             </div>
+        </div>
 
-            <!-- Contador de Progreso -->
-            <div class="progress-container">
-                <div class="progress-info">
-                    <span id="tasks-completed">0 de 0 tareas completadas</span>
-                    <span id="tasks-percentage">0%</span>
-                </div>
-                <div class="progress-bar">
-                    <div class="progress-fill" id="progress-fill"></div>
-                </div>
+        <!-- Tabla de Tareas -->
+        <div class="table-container">
+            <table class="task-table">
+                <thead>
+                    <tr>
+                        <th>TAREA</th>
+                        <th>ZONA</th>
+                        <th>RESPONSABLE</th>
+                        <th>DURACIÓN</th>
+                        <th>FRECUENCIA</th>
+                        <th>PRÓXIMA FECHA</th>
+                        <th>ESTADO</th>
+                    </tr>
+                </thead>
+                <tbody id="contenedor-tareas">
+                    <!-- Las tareas se renderizan dinámicamente desde app.js -->
+                </tbody>
+            </table>
+        </div>
+    </section>
+</main>
+
+    <!-- Footer tradicional (solo desktop) -->
+<footer>
+    <p>Desarrollado por LZumake | Proyecto DAW</p>
+</footer>
+
+<!-- Footer Fijo con FABs (solo móvil) -->
+<footer class="footer-fijo">
+    <div class="footer-fabs">
+        <!-- FAB Izquierdo: Filtros -->
+        <div class="fab-container fab-left">
+            <button class="fab-btn" id="fab-filtros" aria-label="Filtros">
+                <span class="fab-icon">🔍</span>
+            </button>
+            <div class="fab-menu" id="fab-menu-filtros">
+                <button class="fab-menu-item" data-filtro="responsable">👤 Responsable</button>
+                <button class="fab-menu-item" data-filtro="zona">🏠 Zona</button>
+                <button class="fab-menu-item" data-filtro="frecuencia">📅 Frecuencia</button>
+                <button class="fab-menu-item" data-filtro="estado">✅ Estado</button>
             </div>
-
-            <!-- Tabla de Tareas -->
-            <div class="table-container">
-                <table class="task-table">
-                    <thead>
-                        <tr>
-                            <th>TAREA</th>
-                            <th>ZONA</th>
-                            <th>RESPONSABLE</th>
-                            <th>DURACIÓN</th>
-                            <th>FRECUENCIA</th>
-                            <th>PRÓXIMA FECHA</th>
-                            <th>ESTADO</th>
-                        </tr>
-                    </thead>
-                    <tbody id="contenedor-tareas">
-                        <!-- Las tareas se renderizan dinámicamente desde app.js -->
-                    </tbody>
-                </table>
+        </div>
+        
+        <!-- FAB Derecho: Agregar -->
+        <div class="fab-container fab-right">
+            <button class="fab-btn" id="fab-agregar" aria-label="Agregar">
+                <span class="fab-icon">+</span>
+            </button>
+            <div class="fab-menu" id="fab-menu-agregar">
+                <button class="fab-menu-item" data-accion="tarea">📋 Tarea</button>
+                <button class="fab-menu-item" data-accion="evento">📅 Evento</button>
+                <button class="fab-menu-item" data-accion="gasto">💰 Gasto</button>
+                <button class="fab-menu-item" data-accion="compra">🛒 Compra</button>
             </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer>
-        <p>Desarrollado por LZumake | Proyecto DAW</p>
-    </footer>
+        </div>
+    </div>
+    <p>Desarrollado por LZumake | Proyecto DAW</p>
+</footer>
 
     <!-- Scripts -->
     <script src="js/app.js"></script>

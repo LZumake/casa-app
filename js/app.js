@@ -251,6 +251,63 @@ document.addEventListener('DOMContentLoaded', function() {
     // CARGAR PERFIL REAL
     // ============================================
     cargarPerfil();
+    // ============================================
+// FABs - Menús desplegables
+// ============================================
+const fabAgregar = document.getElementById('fab-agregar');
+const fabFiltros = document.getElementById('fab-filtros');
+const menuAgregar = document.getElementById('fab-menu-agregar');
+const menuFiltros = document.getElementById('fab-menu-filtros');
+
+// Toggle menús FAB
+if (fabAgregar && menuAgregar) {
+    fabAgregar.addEventListener('click', function(e) {
+        e.stopPropagation();
+        menuAgregar.classList.toggle('active');
+        menuFiltros.classList.remove('active');
+    });
+}
+
+if (fabFiltros && menuFiltros) {
+    fabFiltros.addEventListener('click', function(e) {
+        e.stopPropagation();
+        menuFiltros.classList.toggle('active');
+        menuAgregar.classList.remove('active');
+    });
+}
+
+// Cerrar menús al hacer clic fuera
+document.addEventListener('click', function() {
+    if (menuAgregar) menuAgregar.classList.remove('active');
+    if (menuFiltros) menuFiltros.classList.remove('active');
+});
+
+// Acciones del menú Agregar
+if (menuAgregar) {
+    const itemsAgregar = menuAgregar.querySelectorAll('.fab-menu-item');
+    itemsAgregar.forEach(item => {
+        item.addEventListener('click', function() {
+            const accion = this.getAttribute('data-accion');
+            console.log(`➕ Agregar: ${accion}`);
+            // Aquí redirigirías o abrirías modal
+            // window.location.href = `${accion}.html`;
+            menuAgregar.classList.remove('active');
+        });
+    });
+}
+
+// Filtros del menú Filtros
+if (menuFiltros) {
+    const itemsFiltros = menuFiltros.querySelectorAll('.fab-menu-item');
+    itemsFiltros.forEach(item => {
+        item.addEventListener('click', function() {
+            const filtro = this.getAttribute('data-filtro');
+            console.log(`🔍 Filtrar por: ${filtro}`);
+            // Aquí implementarías la lógica de filtros
+            menuFiltros.classList.remove('active');
+        });
+    });
+}
 
 }); // ← Cierre del DOMContentLoaded
 
