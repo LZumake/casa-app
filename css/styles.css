@@ -1911,6 +1911,12 @@ body.dark-mode .modal-field select {
     color: rgba(255, 255, 255, 0.5); /* Gris semitransparente */
     margin: 0;
 }
+/* Espacio extra para categorías dinámicas en móvil */
+@media (max-width: 768px) {
+    .shopping-section {
+        padding-bottom: 2rem; /* Espacio adicional antes del footer */
+    }
+}
 
 .footer-fabs {
     display: flex;
