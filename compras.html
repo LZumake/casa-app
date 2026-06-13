@@ -9,6 +9,8 @@
 </head>
 <body>
     <div id="overlay" class="overlay"></div>
+    
+    <!-- Navegación -->
     <nav>
         <div class="nav-left">
             <button class="hamburger" id="hamburger" aria-label="Abrir menú">
@@ -21,284 +23,167 @@
             <a href="gastos.html">💰 Gastos</a>
             <a href="compras.html" class="active">🛒 Compras</a>
         </div>
-        <a href="login.html" class="btn-login"> Iniciar Sesión</a>
-            <!-- Avatar de Usuario (Esquina superior derecha) -->
-    <div class="user-avatar-container">
-        <button class="user-avatar-btn" id="user-avatar-btn" aria-label="Menú de usuario">
-            <span class="avatar-initials" id="avatar-initials">U</span>
-        </button>
-        
-        <div class="user-dropdown" id="user-dropdown">
-            <div class="dropdown-header">
-                <div class="dropdown-avatar" id="dropdown-avatar">U</div>
-                <div class="dropdown-info">
-                    <div class="dropdown-name" id="dropdown-name">Usuario</div>
-                    <div class="dropdown-email" id="dropdown-email">usuario@ksap.app</div>
+        <div class="nav-right">
+            <a href="login.html" class="btn-login">👤 Iniciar Sesión</a>
+            <div class="user-avatar-container">
+                <button class="user-avatar-btn" id="user-avatar-btn" aria-label="Menú de usuario">
+                    <span class="avatar-initials" id="avatar-initials">U</span>
+                </button>
+                <div class="user-dropdown" id="user-dropdown">
+                    <div class="dropdown-header">
+                        <div class="dropdown-avatar" id="dropdown-avatar">U</div>
+                        <div class="dropdown-info">
+                            <div class="dropdown-name" id="dropdown-name">Usuario</div>
+                            <div class="dropdown-email" id="dropdown-email">usuario@ksap.app</div>
+                        </div>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <a href="perfil.html" class="dropdown-item">👤 Mi Perfil</a>
+                    <a href="configuracion.html" class="dropdown-item">⚙️ Configuración</a>
+                    <button class="dropdown-item dropdown-toggle">
+                        <span>📍 GPS</span>
+                        <span class="toggle-switch">
+                            <input type="checkbox" id="gps-toggle">
+                            <span class="toggle-slider"></span>
+                        </span>
+                    </button>
+                    <button class="dropdown-item dropdown-toggle">
+                        <span>🌙 Modo Oscuro</span>
+                        <span class="toggle-switch">
+                            <input type="checkbox" id="dark-mode-toggle">
+                            <span class="toggle-slider"></span>
+                        </span>
+                    </button>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item logout-item" id="logout-btn">🚪 Cerrar Sesión</a>
                 </div>
             </div>
-            
-            <div class="dropdown-divider"></div>
-            
-            <a href="perfil.html" class="dropdown-item">👤 Mi Perfil</a>
-            <a href="configuracion.html" class="dropdown-item">⚙️ Configuración</a>
-            
-            <button class="dropdown-item dropdown-toggle">
-                <span>📍 GPS</span>
-                <span class="toggle-switch">
-                    <input type="checkbox" id="gps-toggle">
-                    <span class="toggle-slider"></span>
-                </span>
-            </button>
-            
-            <button class="dropdown-item dropdown-toggle">
-                <span>🌙 Modo Oscuro</span>
-                <span class="toggle-switch">
-                    <input type="checkbox" id="dark-mode-toggle">
-                    <span class="toggle-slider"></span>
-                </span>
-            </button>
-            
-            <div class="dropdown-divider"></div>
-            
-            <a href="#" class="dropdown-item logout-item" id="logout-btn">🚪 Cerrar Sesión</a>
         </div>
-    </div>
     </nav>
     
+    <!-- Header -->
     <header>
         <h1>🛒 Lista de la Compra</h1>
         <p>Organizada por secciones del supermercado</p>
     </header>
     
+    <!-- Contenido Principal -->
     <main>
         <section class="dashboard">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
-    <h2>Compra de esta semana</h2>
-    <button class="btn-primary" id="btn-add-product">+ Añadir Producto</button>
-</div>
+                <h2>Compra de esta semana</h2>
+                <button class="btn-primary" id="btn-add-product">+ Añadir Producto</button>
+            </div>
 
-<!-- Buscador con autocompletado -->
-<div class="search-container" style="position: relative; margin-bottom: 2rem;">
-    <input 
-        type="text" 
-        id="product-search" 
-        class="form-control" 
-        placeholder="🔍 Buscar producto (ej: leche, manzana, detergente...)"
-        autocomplete="off"
-        style="padding: 0.8rem 1rem; font-size: 1rem;"
-    >
-    <div id="search-suggestions" class="search-suggestions"></div>
-</div>
+            <!-- Buscador con autocompletado -->
+            <div class="search-container" style="position: relative; margin-bottom: 2rem;">
+                <input 
+                    type="text" 
+                    id="product-search" 
+                    class="form-control" 
+                    placeholder="🔍 Buscar producto (ej: leche, manzana, detergente...)"
+                    autocomplete="off"
+                    style="padding: 0.8rem 1rem; font-size: 1rem;"
+                >
+                <div id="search-suggestions" class="search-suggestions"></div>
+            </div>
 
+            <!-- Sección de categorías (renderizada dinámicamente por compras.js) -->
             <div class="shopping-section">
-                
-                <!-- Categoría: Frutería -->
-                <div class="shopping-category">
-                    <div class="category-header fruteria">
-                        <img src="img/compras.webp" alt="Frutería" class="category-icon"> Frutería
-                    </div>
-                    
-                    <div class="shopping-item">
-                        <div class="item-left">
-                            <input type="checkbox" class="item-checkbox">
-                            <span class="item-name">Manzanas</span>
-                        </div>
-                        <div class="item-right">
-                            <span class="item-quantity">1 kg</span>
-                            <span class="item-buyer">Rosa</span>
-                        </div>
-                    </div>
-
-                    <div class="shopping-item">
-                        <div class="item-left">
-                            <input type="checkbox" class="item-checkbox">
-                            <span class="item-name">Plátanos</span>
-                        </div>
-                        <div class="item-right">
-                            <span class="item-quantity">6 uds</span>
-                            <span class="item-buyer">Rosa</span>
-                        </div>
-                    </div>
-
-                    <div class="shopping-item">
-                        <div class="item-left">
-                            <input type="checkbox" class="item-checkbox" checked>
-                            <span class="item-name">Tomates</span>
-                        </div>
-                        <div class="item-right">
-                            <span class="item-quantity">4 uds</span>
-                            <span class="item-buyer">Ana</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Categoría: Lácteos -->
-                <div class="shopping-category">
-                    <div class="category-header lacteos">
-                        <img src="img/desayunar.webp" alt="Lácteos" class="category-icon"> Lácteos
-                    </div>
-                    
-                    <div class="shopping-item">
-                        <div class="item-left">
-                            <input type="checkbox" class="item-checkbox">
-                            <span class="item-name">Leche entera</span>
-                        </div>
-                        <div class="item-right">
-                            <span class="item-quantity">2 L</span>
-                            <span class="item-buyer">Pedro</span>
-                        </div>
-                    </div>
-
-                    <div class="shopping-item">
-                        <div class="item-left">
-                            <input type="checkbox" class="item-checkbox" checked>
-                            <span class="item-name">Yogures naturales</span>
-                        </div>
-                        <div class="item-right">
-                            <span class="item-quantity">8 uds</span>
-                            <span class="item-buyer">Pedro</span>
-                        </div>
-                    </div>
-
-                    <div class="shopping-item">
-                        <div class="item-left">
-                            <input type="checkbox" class="item-checkbox">
-                            <span class="item-name">Queso manchego</span>
-                        </div>
-                        <div class="item-right">
-                            <span class="item-quantity">250 g</span>
-                            <span class="item-buyer">Miguel</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Categoría: Limpieza -->
-                <div class="shopping-category">
-                    <div class="category-header limpieza">
-                        <img src="img/limpiar baño.webp" alt="Limpieza" class="category-icon"> Limpieza
-                    </div>
-                    
-                    <div class="shopping-item">
-                        <div class="item-left">
-                            <input type="checkbox" class="item-checkbox">
-                            <span class="item-name">Detergente ropa</span>
-                        </div>
-                        <div class="item-right">
-                            <span class="item-quantity">1 ud</span>
-                            <span class="item-buyer">Compartidas</span>
-                        </div>
-                    </div>
-
-                    <div class="shopping-item">
-                        <div class="item-left">
-                            <input type="checkbox" class="item-checkbox">
-                            <span class="item-name">Papel higiénico</span>
-                        </div>
-                        <div class="item-right">
-                            <span class="item-quantity">12 rollos</span>
-                            <span class="item-buyer">Compartidas</span>
-                        </div>
-                    </div>
-
-                    <div class="shopping-item">
-                        <div class="item-left">
-                            <input type="checkbox" class="item-checkbox">
-                            <span class="item-name">Bolsas de basura</span>
-                        </div>
-                        <div class="item-right">
-                            <span class="item-quantity">1 pack</span>
-                            <span class="item-buyer">Compartidas</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Categoría: Carnicería -->
-                <div class="shopping-category">
-                    <div class="category-header carniceria">
-                        <img src="img/cocinar.webp" alt="Carnicería" class="category-icon"> Carnicería
-                    </div>
-                    
-                    <div class="shopping-item">
-                        <div class="item-left">
-                            <input type="checkbox" class="item-checkbox">
-                            <span class="item-name">Pechugas de pollo</span>
-                        </div>
-                        <div class="item-right">
-                            <span class="item-quantity">500 g</span>
-                            <span class="item-buyer">Ana</span>
-                        </div>
-                    </div>
-
-                    <div class="shopping-item">
-                        <div class="item-left">
-                            <input type="checkbox" class="item-checkbox">
-                            <span class="item-name">Carne picada</span>
-                        </div>
-                        <div class="item-right">
-                            <span class="item-quantity">400 g</span>
-                            <span class="item-buyer">Miguel</span>
-                        </div>
-                    </div>
-                </div>
-
+                <!-- Las categorías se renderizan dinámicamente desde compras.js -->
             </div>
         </section>
     </main>
     
+    <!-- Footer tradicional (solo desktop) -->
     <footer>
         <p>Desarrollado por LZumake | Proyecto DAW</p>
     </footer>
-    <script src="js/app.js"></script>
-    <script src="js/compras.js"></script>  
-    <!-- ============================================
-     MODAL PARA AÑADIR PRODUCTO
-     ============================================ -->
-<div class="modal-overlay" id="modal-add-product">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h3>🛒 Añadir producto</h3>
-            <button class="modal-close" id="modal-close">&times;</button>
-        </div>
-        
-        <div class="modal-body">
-            <div class="modal-product-name" id="modal-product-name">
-                Nombre del producto
-            </div>
-            
-            <div class="modal-field">
-                <label for="modal-quantity"> Cantidad</label>
-                <div class="quantity-input-group">
-                    <input type="number" id="modal-quantity" value="1" min="1" max="99">
-                    <select id="modal-unit">
-                        <option value="ud">ud</option>
-                        <option value="kg">kg</option>
-                        <option value="g">g</option>
-                        <option value="L">L</option>
-                        <option value="ml">ml</option>
-                        <option value="pack">pack</option>
-                        <option value="rollos">rollos</option>
-                    </select>
+    
+    <!-- Footer Fijo con FABs (solo móvil) -->
+    <footer class="footer-fijo">
+        <div class="footer-fabs">
+            <!-- FAB Izquierdo: Filtros -->
+            <div class="fab-container fab-left">
+                <button class="fab-btn" id="fab-filtros" aria-label="Filtros">
+                    <span class="fab-icon">🔍</span>
+                </button>
+                <div class="fab-menu" id="fab-menu-filtros">
+                    <button class="fab-menu-item" data-filtro="categoria">🏠 Categoría</button>
+                    <button class="fab-menu-item" data-filtro="comprador">👤 Comprador</button>
+                    <button class="fab-menu-item" data-filtro="estado">✅ Estado</button>
+                    <button class="fab-menu-item disabled" data-filtro="fecha"> Fecha <span class="badge-proximamente">Próximamente</span></button>
+                    <button class="fab-menu-item disabled" data-filtro="tienda">🏪 Tienda <span class="badge-proximamente">Próximamente</span></button>
+                    <button class="fab-menu-item disabled" data-filtro="marca">🏷️ Marca <span class="badge-proximamente">Próximamente</span></button>
+                    <button class="fab-menu-item disabled" data-filtro="presupuesto">💰 Presupuesto <span class="badge-proximamente">Fase 6</span></button>
                 </div>
             </div>
             
-            <div class="modal-field">
-                <label for="modal-buyer"> ¿Quién lo compra?</label>
-                <select id="modal-buyer">
-                    <option value="Tú">Tú</option>
-                    <option value="Rosa">Rosa</option>
-                    <option value="Pedro">Pedro</option>
-                    <option value="Ana">Ana</option>
-                    <option value="Miguel">Miguel</option>
-                    <option value="Compartidas">Compartidas</option>
-                </select>
+            <!-- FAB Derecho: Agregar -->
+            <div class="fab-container fab-right">
+                <button class="fab-btn" id="fab-agregar" aria-label="Agregar">
+                    <span class="fab-icon">+</span>
+                </button>
+                <div class="fab-menu" id="fab-menu-agregar">
+                    <button class="fab-menu-item" data-accion="buscar">🔍 Buscar producto (API)</button>
+                    <button class="fab-menu-item" data-accion="manual">✏️ Producto manual</button>
+                    <button class="fab-menu-item" data-accion="categoria">📁 Nueva categoría</button>
+                    <button class="fab-menu-item disabled" data-accion="escanear"> Escanear código <span class="badge-proximamente">Fase 4</span></button>
+                    <button class="fab-menu-item disabled" data-accion="ticket">🧾 Escanear ticket <span class="badge-proximamente">Fase 4</span></button>
+                    <button class="fab-menu-item disabled" data-accion="presupuesto">💰 Presupuesto <span class="badge-proximamente">Fase 6</span></button>
+                </div>
             </div>
         </div>
-        
-        <div class="modal-footer">
-            <button class="btn-cancel" id="modal-cancel">Cancelar</button>
-            <button class="btn-confirm" id="modal-confirm">Añadir</button>
+        <p>Desarrollado por LZumake | Proyecto DAW</p>
+    </footer>
+    
+    <!-- Modal para añadir producto -->
+    <div class="modal-overlay" id="modal-add-product">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>🛒 Añadir producto</h3>
+                <button class="modal-close" id="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-product-name" id="modal-product-name">
+                    Nombre del producto
+                </div>
+                <div class="modal-field">
+                    <label for="modal-quantity">📦 Cantidad</label>
+                    <div class="quantity-input-group">
+                        <input type="number" id="modal-quantity" value="1" min="1" max="99">
+                        <select id="modal-unit">
+                            <option value="ud">ud</option>
+                            <option value="kg">kg</option>
+                            <option value="g">g</option>
+                            <option value="L">L</option>
+                            <option value="ml">ml</option>
+                            <option value="pack">pack</option>
+                            <option value="rollos">rollos</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-field">
+                    <label for="modal-buyer">👤 ¿Quién lo compra?</label>
+                    <select id="modal-buyer">
+                        <option value="Tú">Tú</option>
+                        <option value="Rosa">Rosa</option>
+                        <option value="Pedro">Pedro</option>
+                        <option value="Ana">Ana</option>
+                        <option value="Miguel">Miguel</option>
+                        <option value="Compartidas">Compartidas</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-cancel" id="modal-cancel">Cancelar</button>
+                <button class="btn-confirm" id="modal-confirm">Añadir</button>
+            </div>
         </div>
     </div>
-</div>
+    
+    <!-- Scripts -->
+    <script src="js/app.js"></script>
+    <script src="js/compras.js"></script>
 </body>
 </html>

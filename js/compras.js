@@ -1,13 +1,46 @@
 // ============================================
+// CATEGORÍAS DINÁMICAS DE LA LISTA DE COMPRA
+// ============================================
+const CATEGORIAS_DEFAULT = [
+    { id: 'fruteria', nombre: 'Frutería', color: 'fruteria', icono: '🍎' },
+    { id: 'lacteos', nombre: 'Lácteos', color: 'lacteos', icono: '🥛' },
+    { id: 'limpieza', nombre: 'Limpieza', color: 'limpieza', icono: '🧼' },
+    { id: 'carniceria', nombre: 'Carnicería', color: 'carniceria', icono: '🥩' },
+    { id: 'panaderia', nombre: 'Panadería', color: 'panaderia', icono: '🥖' },
+    { id: 'bebidas', nombre: 'Bebidas', color: 'bebidas', icono: '🥤' },
+    { id: 'congelados', nombre: 'Congelados', color: 'congelados', icono: '🧊' },
+    { id: 'snacks', nombre: 'Snacks', color: 'snacks', icono: '🍿' }
+];
+
+// Cargar categorías desde localStorage o usar las por defecto
+function cargarCategorias() {
+    const guardadas = localStorage.getItem('ksap_categorias');
+    if (guardadas) {
+        try {
+            return JSON.parse(guardadas);
+        } catch (e) {
+            console.error('Error al cargar categorías:', e);
+        }
+    }
+    return [...CATEGORIAS_DEFAULT];
+}
+
+function guardarCategorias(categorias) {
+    localStorage.setItem('ksap_categorias', JSON.stringify(categorias));
+}
+
+// Variable global de categorías
+let categorias = cargarCategorias();
+
+// ============================================
 // BUSCADOR CON AUTOCOMPLETADO - OPEN FOOD FACTS
 // ============================================
-
 document.addEventListener('DOMContentLoaded', function() {
     const searchInput = document.getElementById('product-search');
     const suggestionsBox = document.getElementById('search-suggestions');
     let debounceTimer;
 
-        // ============================================
+    // ============================================
     // LÓGICA DEL MODAL
     // ============================================
     const modalOverlay = document.getElementById('modal-add-product');
@@ -19,14 +52,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const modalUnit = document.getElementById('modal-unit');
     const modalBuyer = document.getElementById('modal-buyer');
 
-    let productoTemporal = null; // Para guardar qué producto estamos añadiendo
+    let productoTemporal = null;
 
     function abrirModal(nombre, categoria) {
         productoTemporal = { nombre, categoria };
         modalProductName.textContent = nombre;
-        modalQuantity.value = 1; // Resetear cantidad
-        modalUnit.value = 'ud';  // Resetear unidad
-        modalBuyer.value = 'Tú'; // Resetear comprador
+        modalQuantity.value = 1;
+        modalUnit.value = 'ud';
+        modalBuyer.value = 'Tú';
         modalOverlay.classList.add('active');
     }
 
@@ -35,138 +68,110 @@ document.addEventListener('DOMContentLoaded', function() {
         productoTemporal = null;
     }
 
-    // Eventos para cerrar el modal
     if (modalClose) modalClose.addEventListener('click', cerrarModal);
     if (modalCancel) modalCancel.addEventListener('click', cerrarModal);
     
-    // Cerrar al hacer clic fuera del contenido
     if (modalOverlay) {
         modalOverlay.addEventListener('click', function(e) {
             if (e.target === modalOverlay) cerrarModal();
         });
     }
 
-    // Evento para confirmar y añadir
     if (modalConfirm) {
         modalConfirm.addEventListener('click', function() {
             if (productoTemporal) {
-                const cantidad = modalQuantity.value;
-                const unidad = modalUnit.value;
-                const comprador = modalBuyer.value;
-                
                 añadirProductoAlaLista(
                     productoTemporal.nombre, 
                     productoTemporal.categoria,
-                    cantidad,
-                    unidad,
-                    comprador
+                    modalQuantity.value,
+                    modalUnit.value,
+                    modalBuyer.value
                 );
                 cerrarModal();
             }
         });
     }
-    // ============================================
-    // DATOS MOCK (simulados) - Para pruebas
-    // ============================================
-    const productosMock = [
-        {
-            product_name: 'Leche entera',
-            brands: 'Hacendado',
-            categories_tags: ['en:dairies']
-        },
-        {
-            product_name: 'Leche semidesnatada',
-            brands: 'Pascual',
-            categories_tags: ['en:dairies']
-        },
-        {
-            product_name: 'Leche desnatada',
-            brands: 'Central Lechera Asturiana',
-            categories_tags: ['en:dairies']
-        },
-        {
-            product_name: 'Manzanas',
-            brands: '',
-            categories_tags: ['en:fruits']
-        },
-        {
-            product_name: 'Plátanos',
-            brands: '',
-            categories_tags: ['en:fruits']
-        },
-        {
-            product_name: 'Tomates',
-            brands: '',
-            categories_tags: ['en:vegetables']
-        },
-        {
-            product_name: 'Yogures naturales',
-            brands: 'Danone',
-            categories_tags: ['en:dairies']
-        },
-        {
-            product_name: 'Queso manchego',
-            brands: 'El Pastor',
-            categories_tags: ['en:dairies']
-        },
-        {
-            product_name: 'Detergente ropa',
-            brands: 'Bosque Verde',
-            categories_tags: ['en:cleaning-products']
-        },
-        {
-            product_name: 'Papel higiénico',
-            brands: 'Lotus',
-            categories_tags: ['en:hygiene']
-        },
-        {
-            product_name: 'Pechugas de pollo',
-            brands: '',
-            categories_tags: ['en:meats']
-        },
-        {
-            product_name: 'Carne picada',
-            brands: '',
-            categories_tags: ['en:meats']
-        },
-        {
-            product_name: 'Pan de molde',
-            brands: 'Bimbo',
-            categories_tags: ['en:breads']
-        },
-        {
-            product_name: 'Arroz',
-            brands: 'Bomba',
-            categories_tags: ['en:grains']
-        },
-        {
-            product_name: 'Pasta',
-            brands: 'Gallo',
-            categories_tags: ['en:grains']
-        }
-    ];
 
+    // ============================================
+    // RENDERIZAR CATEGORÍAS DINÁMICAMENTE
+    // ============================================
+    function renderizarCategorias() {
+        const shoppingSection = document.querySelector('.shopping-section');
+        if (!shoppingSection) return;
+        
+        shoppingSection.innerHTML = '';
+        
+        categorias.forEach(cat => {
+            const categoriaDiv = document.createElement('div');
+            categoriaDiv.className = 'shopping-category';
+            categoriaDiv.dataset.categoriaId = cat.id;
+            
+            categoriaDiv.innerHTML = `
+                <div class="category-header ${cat.color}">
+                    <span class="category-icon">${cat.icono}</span> ${cat.nombre}
+                </div>
+                <div class="category-items" data-categoria="${cat.id}">
+                </div>
+            `;
+            
+            shoppingSection.appendChild(categoriaDiv);
+        });
+        
+        console.log(`✅ Renderizadas ${categorias.length} categorías`);
+    }
+
+    // Renderizar categorías al cargar
+    renderizarCategorias();
+
+    // ============================================
+    // AÑADIR NUEVA CATEGORÍA
+    // ============================================
+    function añadirNuevaCategoria(nombre, icono = '') {
+        const id = nombre.toLowerCase()
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .replace(/[^a-z0-9]/g, '_')
+            .replace(/_+/g, '_')
+            .trim();
+        
+        if (categorias.find(c => c.id === id)) {
+            alert(`La categoría "${nombre}" ya existe`);
+            return null;
+        }
+        
+        const nuevaCategoria = {
+            id: id,
+            nombre: nombre,
+            color: id,
+            icono: icono
+        };
+        
+        categorias.push(nuevaCategoria);
+        guardarCategorias(categorias);
+        renderizarCategorias();
+        
+        console.log(`✅ Nueva categoría añadida: ${nombre} (${id})`);
+        return nuevaCategoria;
+    }
+
+    // ============================================
+    // EVENT LISTENERS DEL BUSCADOR
+    // ============================================
     if (searchInput && suggestionsBox) {
-        // Escuchar cuando el usuario escribe
         searchInput.addEventListener('input', function(e) {
             const query = e.target.value.trim();
-            
-            // Limpiar timer anterior
             clearTimeout(debounceTimer);
             
-            // Si está vacío, ocultar sugerencias
             if (query.length < 2) {
                 suggestionsBox.classList.remove('active');
                 return;
             }
             
-            // Esperar 300ms después de dejar de escribir (debounce)
             debounceTimer = setTimeout(() => {
                 buscarProductos(query);
             }, 300);
         });
 
-        // Cerrar sugerencias al hacer clic fuera
         document.addEventListener('click', function(e) {
             if (!searchInput.contains(e.target) && !suggestionsBox.contains(e.target)) {
                 suggestionsBox.classList.remove('active');
@@ -175,55 +180,36 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // ============================================
-    // Función para buscar productos
+    // FUNCIÓN PRINCIPAL: BUSCAR PRODUCTOS (API REAL)
     // ============================================
     async function buscarProductos(query) {
         try {
-            // Mostrar loading
-            suggestionsBox.innerHTML = '<div class="search-loading">Buscando...</div>';
+            suggestionsBox.innerHTML = '<div class="search-loading">Buscando productos...</div>';
             suggestionsBox.classList.add('active');
 
-            // ============================================
-            // MODO MOCK (activado)
-            // ============================================
-            // Filtrar productos mock que coincidan con la búsqueda
-            const resultados = productosMock.filter(producto => 
-                producto.product_name.toLowerCase().includes(query.toLowerCase()) ||
-                (producto.brands && producto.brands.toLowerCase().includes(query.toLowerCase()))
-            );
-
-            // Simular delay de red (300ms)
-            await new Promise(resolve => setTimeout(resolve, 300));
-
-            // Mostrar resultados
-            mostrarSugerencias(resultados);
-
-            // ============================================
-            // MODO API REAL (desactivado - descomentar cuando funcione)
-            // ============================================
-            /*
             const response = await fetch(
-                `https://world.openfoodfacts.org/cgi/search.pl?search_terms=${encodeURIComponent(query)}&search_simple=1&action=process&json=1&page_size=10&lc=es&tags_lc=es`
+                `https://world.openfoodfacts.org/cgi/search.pl?search_terms=${encodeURIComponent(query)}&search_simple=1&action=process&json=1&page_size=10&lc=es`
             );
             
             if (!response.ok) {
-                throw new Error('Error en la respuesta de la API');
+                throw new Error(`Error HTTP: ${response.status}`);
             }
 
             const data = await response.json();
-            
-            // Mostrar resultados
             mostrarSugerencias(data.products);
-            */
 
         } catch (error) {
-            console.error('Error al buscar productos:', error);
-            suggestionsBox.innerHTML = '<div class="search-no-results">Error al buscar. Intenta de nuevo.</div>';
+            console.error('❌ Error al buscar productos:', error);
+            suggestionsBox.innerHTML = `
+                <div class="search-no-results">
+                    ⚠️ Error al buscar. Verifica tu conexión e intenta de nuevo.
+                </div>
+            `;
         }
     }
 
     // ============================================
-    // Función para mostrar las sugerencias
+    // MOSTRAR SUGERENCIAS
     // ============================================
     function mostrarSugerencias(productos) {
         if (!productos || productos.length === 0) {
@@ -231,17 +217,15 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        // Limpiar el contenedor
         suggestionsBox.innerHTML = '';
 
-        // Crear un elemento por cada producto
         productos.forEach(producto => {
             const item = document.createElement('div');
             item.className = 'suggestion-item';
             
             const nombre = producto.product_name || 'Producto sin nombre';
             const marca = producto.brands || '';
-            const categoria = producto.categories_tags?.[0]?.split(',').pop()?.replace('-', ' ') || 'General';
+            const categoria = producto.categories_tags?.[0]?.replace('en:', '') || 'general';
 
             item.innerHTML = `
                 <span class="product-name">${highlightText(nombre, searchInput.value)}</span>
@@ -249,10 +233,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 <span class="product-category">${categoria}</span>
             `;
 
-            // Al hacer clic en una sugerencia -> ABRIR MODAL
             item.addEventListener('click', function() {
-                console.log('Producto seleccionado:', nombre, 'Categoría:', categoria);
-                abrirModal(nombre, categoria); // <--- CAMBIO AQUÍ
+                console.log('✅ Producto seleccionado:', nombre, 'Categoría:', categoria);
+                abrirModal(nombre, categoria);
+                suggestionsBox.classList.remove('active');
+                searchInput.value = '';
             });
 
             suggestionsBox.appendChild(item);
@@ -260,31 +245,35 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // ============================================
-    // Función para resaltar el texto buscado
+    // RESALTAR TEXTO BUSCADO
     // ============================================
     function highlightText(text, query) {
         const regex = new RegExp(`(${query})`, 'gi');
         return text.replace(regex, '<strong>$1</strong>');
     }
 
-        // ============================================
-    // Función para añadir producto a la lista
+    // ============================================
+    // AÑADIR PRODUCTO A LA LISTA
     // ============================================
     function añadirProductoAlaLista(nombre, categoria, cantidad = 1, unidad = 'ud', comprador = 'Tú') {
-        // Mapear categoría de la API a nuestras secciones
         const seccion = mapearCategoria(categoria);
-        
-        // Buscar el contenedor de la sección
-        const seccionElement = document.querySelector(`.shopping-category .category-header.${seccion}`);
+        const seccionElement = document.querySelector(`.category-header.${seccion}`);
         
         if (!seccionElement) {
-            console.error('No se encontró la sección:', seccion);
+            console.error('❌ No se encontró la sección:', seccion);
+            alert(`No se encontró la sección "${seccion}". El producto se añadirá a Frutería.`);
+            const fallback = document.querySelector('.category-header.fruteria').parentElement;
+            crearItemHTML(nombre, cantidad, unidad, comprador, fallback);
             return;
         }
 
         const contenedorSeccion = seccionElement.parentElement;
+        crearItemHTML(nombre, cantidad, unidad, comprador, contenedorSeccion);
+        
+        console.log(`✅ Producto "${nombre}" (${cantidad} ${unidad}) añadido a ${seccion} para ${comprador}`);
+    }
 
-        // Crear el nuevo item
+    function crearItemHTML(nombre, cantidad, unidad, comprador, contenedor) {
         const nuevoItem = document.createElement('div');
         nuevoItem.className = 'shopping-item';
         nuevoItem.innerHTML = `
@@ -298,40 +287,53 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         `;
         
-        contenedorSeccion.appendChild(nuevoItem);
+        contenedor.appendChild(nuevoItem);
         
-        // Activar el checkbox del nuevo item
         const checkbox = nuevoItem.querySelector('.item-checkbox');
         checkbox.addEventListener('change', function() {
             const tarjeta = this.closest('.shopping-item');
-            if (this.checked) {
-                tarjeta.classList.add('comprado');
-            } else {
-                tarjeta.classList.remove('comprado');
-            }
+            tarjeta.classList.toggle('comprado', this.checked);
         });
-        
-        console.log(`✅ Producto "${nombre}" (${cantidad} ${unidad}) añadido a ${seccion} para ${comprador}`);
     }
-        });
-        
+
     // ============================================
-    // Función para mapear categorías de la API
+    // MAPEAR CATEGORÍAS DE LA API A CATEGORÍAS LOCALES
     // ============================================
     function mapearCategoria(categoriaApi) {
-        if (!categoriaApi) return 'fruteria'; // Por defecto
+        if (!categoriaApi) return categorias[0]?.id || 'fruteria';
         
         const categoria = categoriaApi.toLowerCase();
         
-        if (categoria.includes('dairies') || categoria.includes('milk')) {
-            return 'lacteos';
-        } else if (categoria.includes('fruits') || categoria.includes('vegetables')) {
-            return 'fruteria';
-        } else if (categoria.includes('meats') || categoria.includes('fish')) {
-            return 'carniceria';
-        } else if (categoria.includes('cleaning') || categoria.includes('hygiene')) {
-            return 'limpieza';
+        // Buscar coincidencia en categorías existentes
+        for (const cat of categorias) {
+            const catId = cat.id.toLowerCase();
+            const catNombre = cat.nombre.toLowerCase();
+            
+            if (categoria.includes(catId) || categoria.includes(catNombre)) {
+                return cat.id;
+            }
         }
         
-        return 'fruteria'; // Por defecto
+        // Mapeos específicos de la API
+        if (categoria.includes('dairies') || categoria.includes('milk') || categoria.includes('yogurt') || categoria.includes('cheese')) {
+            return 'lacteos';
+        } else if (categoria.includes('fruit') || categoria.includes('vegetable') || categoria.includes('apple') || categoria.includes('banana')) {
+            return 'fruteria';
+        } else if (categoria.includes('meat') || categoria.includes('fish') || categoria.includes('poultry')) {
+            return 'carniceria';
+        } else if (categoria.includes('clean') || categoria.includes('hygiene') || categoria.includes('detergent')) {
+            return 'limpieza';
+        } else if (categoria.includes('bread') || categoria.includes('bakery')) {
+            return 'panaderia';
+        } else if (categoria.includes('beverage') || categoria.includes('drink')) {
+            return 'bebidas';
+        } else if (categoria.includes('frozen')) {
+            return 'congelados';
+        } else if (categoria.includes('snack') || categoria.includes('chip')) {
+            return 'snacks';
+        }
+        
+        return categorias[0]?.id || 'fruteria';
     }
+
+}); // ← Cierre del DOMContentLoaded
