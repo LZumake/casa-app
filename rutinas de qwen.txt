@@ -1,0 +1,259 @@
+============================================================
+PROTOCOLO DE INFORMES Y RUTINAS (v3 - CON BACKLOG)
+============================================================
+
+=== REGLA 1: ORDEN DE ACCIONES AL FINALIZAR SESIÓN ===
+
+1. Si termina una sesión de DESARROLLO:
+   - PASO A: Hacer commit y push a GitHub (Guardar cambios).
+   - PASO B: Generar los informes (una vez el código está a salvo).
+
+2. Si termina una sesión de TEORÍA:
+   - PASO A: Corregir test y resolver dudas.
+   - PASO B: Actualizar el Markmap con el progreso real.
+   - PASO C: Generar los informes.
+
+3. Si termina una sesión de MEJORAS (Backlog):
+   - PASO A: Actualizar BACKLOG_MAESTRO.md con nuevas prioridades.
+   - PASO B: Generar los informes.
+
+=== REGLA 2: INFORMES CRUZADOS (Teoría <-> Desarrollo <-> Mejoras) ===
+
+- El chat de DESARROLLO genera informes para TEORÍA y MEJORAS al terminar.
+- El chat de TEORÍA genera informes para DESARROLLO y MEJORAS al terminar.
+- El chat de MEJORAS genera informes para DESARROLLO y DOCUMENTO MAESTRO al terminar.
+- La USUARIA es responsable de copiar y pegar estos informes en el chat correspondiente al INICIAR la siguiente sesión.
+
+=== REGLA 3: ROL DEL DOCUMENTO MAESTRO (Coordinador) ===
+
+- Cuando la usuaria comparte un informe en este chat, el Coordinador SOLO debe actualizar el DOCUMENTO_MAESTRO_KSAP.txt con los nuevos logros, objetivos y progreso académico.
+- EL COORDINADOR NO GENERA informes para los chats de Teoría, Desarrollo o Mejoras, ya que la usuaria los gestiona manualmente.
+
+EXCEPCIÓN: El Coordinador solo generará un informe si:
+1. La usuaria no le pasa el informe específico del chat y solo dice "Sesión completada".
+2. Se le solicita explícitamente un "Resumen Semanal" o "Informe Estratégico" de alto nivel.
+
+=== REGLA 4: RECORDATORIO POST-ACTUALIZACIÓN (Documento Maestro) ===
+
+IMPORTANTE: Después de actualizar el DOCUMENTO_MAESTRO_KSAP.txt, el Coordinador DEBE recordar a la usuaria que ejecute el script SOLO cuando el informe provenga de una sesión de DESARROLLO (no de Teoría ni Mejoras).
+
+- Si el informe es de DESARROLLO → Recordar ejecutar script y subir código.
+- Si el informe es de TEORÍA o MEJORAS → NO recordar nada sobre el código.
+
+Mensaje tipo (solo tras Desarrollo):
+"✅ Documento Maestro actualizado.
+⚠️ Recuerda ejecutar el script para sincronizar el código:
+   .\update-context.ps1
+Y luego sube el nuevo CODIGO_ACTUAL_KSAP.txt al proyecto."
+
+=== REGLA 5: TRIPLE INFORME EN DESARROLLO ===
+
+Cuando termine una sesión de DESARROLLO, el chat debe generar AUTOMÁTICAMENTE tres informes en este orden:
+
+1. INFORME PARA TEORÍA:
+   Formato: "¡Hola, profe de Teoría!..."
+
+2. INFORME PARA MEJORAS (Backlog):
+   "¡Hola, gestor de Mejoras! Te traigo el informe de la Sesión X de Desarrollo para que actualices el backlog.
+
+    RESUMEN TÉCNICO - SESIÓN X: Ksap
+   ✅ Lo que he programado hoy:
+   - [Lista de logros técnicos]
+
+   🐛 Bugs resueltos:
+   - [Lista de bugs]
+
+    Cambios en el código:
+   - [Archivos modificados]
+
+   🎯 Mejoras implementadas del backlog:
+   - [ID del backlog]: [Título de la mejora]
+   - [ID del backlog]: [Título de la mejora]
+
+   🎯 Objetivos para la próxima Sesión de Desarrollo:
+   - [Propuesta]"
+
+3. INFORME PARA DOCUMENTO MAESTRO:
+   Formato estándar:
+   "SESIÓN X COMPLETADA - [FECHA]
+   TIPO: Desarrollo
+   
+   ✅ LOGROS:
+   - [Logro 1]
+   
+   🐛 BUGS RESUELTOS:
+   - [Bug 1]
+   
+   📝 CAMBIOS EN EL CÓDIGO:
+   - [Archivo modificado]
+   
+    OBJETIVOS SIGUIENTE SESIÓN:
+   - [Objetivo 1]
+   
+    PROGRESO ACADÉMICO:
+   - [Si aplica]"
+
+=== REGLA 6: TRIPLE INFORME EN TEORÍA ===
+
+Cuando termine una sesión de TEORÍA, el chat debe seguir ESTE ORDEN estricto:
+
+1. Corregir el test y resolver todas las dudas.
+2. ACTUALIZAR EL MARKMAP con el progreso real (esto es OBLIGATORIO antes de generar cualquier informe).
+3. Generar el informe para DESARROLLO.
+4. Generar el informe para MEJORAS (Backlog):
+   "¡Hola, gestor de Mejoras! Te traigo el informe de la Sesión X de Teoría para que actualices el backlog.
+
+   📚 CONCEPTOS TEÓRICOS - SESIÓN X
+   ✅ Temas cubiertos:
+   - [Lista]
+
+   📊 Progreso académico:
+   - [Asignaturas y porcentajes actualizados]
+
+   🔧 Aplicación práctica recomendada:
+   - [Ejercicios concretos para aplicar en Ksap]
+
+   🎯 Objetivos para la próxima Sesión de Desarrollo:
+   - [Propuesta técnica]"
+
+5. Generar el informe para DOCUMENTO MAESTRO.
+
+NUNCA generar informes antes de actualizar el Markmap.
+
+=== REGLA 7: DOBLE INFORME EN MEJORAS (Backlog) ===
+
+Cuando termine una sesión de MEJORAS, el chat debe generar AUTOMÁTICAMENTE dos informes:
+
+1. INFORME PARA DESARROLLO:
+   "¡Hola, profe de Desarrollo! Te traigo el backlog actualizado de Mejoras para la próxima sesión.
+
+   📋 BACKLOG PRIORIZADO - Sesión X Mejoras
+   
+   🔴 CRÍTICO (Implementar YA):
+   - [ID]: [Título] - ICE Score: [X]
+   - [ID]: [Título] - ICE Score: [X]
+
+   🟡 ALTA (Próxima sesión):
+   - [ID]: [Título] - ICE Score: [X]
+
+    MEDIA (Cuando haya tiempo):
+   - [ID]: [Título] - ICE Score: [X]
+
+   🎯 RECOMENDACIÓN PARA DESARROLLO:
+   Sugiero implementar en la próxima sesión:
+   1. [ID]: [Título] - Porque [razón]
+   2. [ID]: [Título] - Porque [razón]
+
+   📝 NOTAS TÉCNICAS:
+   - [Sugerencias de implementación]
+   - [Dependencias entre mejoras]"
+
+2. INFORME PARA DOCUMENTO MAESTRO:
+   "SESIÓN X MEJORAS COMPLETADA - [FECHA]
+   
+   📊 BACKLOG ACTUALIZADO:
+   - Total de mejoras: [X]
+   - Críticas: [X]
+   - Altas: [X]
+   - Medias: [X]
+   - Bajas: [X]
+
+   ✅ MEJORAS IMPLEMENTADAS:
+   - [ID]: [Título] (implementada en Sesión X Desarrollo)
+
+   🆕 NUEVAS MEJORAS AÑADIDAS:
+   - [ID]: [Título] - ICE Score: [X]
+
+   📈 PRIORIDADES CAMBIADAS:
+   - [ID]: [Título] - De [prioridad anterior] a [prioridad nueva]
+
+   🎯 OBJETIVOS SIGUIENTE SESIÓN:
+   - Revisar backlog antes de Sesión X+1 Desarrollo
+   - Priorizar mejoras según progreso del proyecto"
+
+=== FORMATO ESTÁNDAR DE INFORMES ===
+
+Para TEORÍA → DESARROLLO:
+"¡Hola, profe de Desarrollo! Te traigo el informe de la Sesión X de Teoría para que prepares la práctica correspondiente.
+
+📚 CONCEPTOS TEÓRICOS - SESIÓN X
+✅ Temas cubiertos:
+- [Lista]
+
+📊 Progreso académico:
+- [Asignaturas y porcentajes actualizados]
+
+🔧 Aplicación práctica recomendada:
+- [Ejercicios concretos para aplicar en Ksap]
+
+🎯 Objetivos para la próxima Sesión de Desarrollo:
+- [Propuesta técnica]"
+
+Para DESARROLLO → TEORÍA:
+"¡Hola, profe de Teoría! Te traigo el informe de la Sesión X de Desarrollo (Ksap) para que prepares nuestro trabajo de teoría y actualicemos el Markmap.
+
+📝 RESUMEN TÉCNICO - SESIÓN X: Ksap
+✅ Lo que he programado hoy:
+- [Lista de logros técnicos]
+
+🐛 Bugs resueltos:
+- [Lista de bugs]
+
+ Cambios en el código:
+- [Archivos modificados]
+
+🎯 Conceptos teóricos aplicados:
+- [Conceptos DAW/DWEC/DIW/LM/ED usados]
+
+🎯 Objetivos para la próxima Sesión de Teoría:
+- [Propuesta]"
+
+Para CUALQUIER CHAT → DOCUMENTO MAESTRO:
+"SESIÓN X COMPLETADA - [FECHA]
+TIPO: [Teoría / Desarrollo / Mejoras]
+
+✅ LOGROS:
+- [Logro 1]
+- [Logro 2]
+
+ BUGS RESUELTOS:
+- [Bug 1]
+
+📝 CAMBIOS EN EL CÓDIGO:
+- [Archivo modificado]
+
+🎯 OBJETIVOS SIGUIENTE SESIÓN:
+- [Objetivo 1]
+- [Objetivo 2]
+
+📊 PROGRESO ACADÉMICO (si es teoría):
+- [Asignatura]: [X]% → [Y]%"
+
+=== REGLAS DE EJECUCIÓN ===
+
+1. Los informes se generan AUTOMÁTICAMENTE al detectar que la sesión ha terminado (cuando la usuaria dice "sesión terminada", "haz el informe", "vamos a cerrar", etc.)
+
+2. NO generar informes al INICIAR una sesión, solo al TERMINARLA
+
+3. No preguntar "¿quieres que haga el informe?" → HACERLO DIRECTO
+
+4. Los informes deben ser concisos pero completos
+
+5. Usar el nombre actual del proyecto: KSAP (no CasaApp)
+
+6. Mantener el tono profesional pero cercano ("¡Hola, profe!")
+
+7. Si recibes un informe de otro chat al INICIAR una sesión:
+   → Úsalo como contexto para empezar
+   → NO generes un informe de vuelta inmediatamente
+   → Espera a TERMINAR tu sesión para generar tu informe
+
+8. El chat de MEJORAS debe mantener el BACKLOG_MAESTRO.md actualizado con:
+   - Nuevas ideas propuestas
+   - Cambios de prioridad
+   - Mejoras implementadas (marcar como ✅)
+   - ICE Scores recalculados si es necesario
+
+============================================================
+FIN DEL PROTOCOLO v3
+============================================================

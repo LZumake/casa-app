@@ -1,0 +1,206 @@
+============================================================
+PROTOCOLO DE INFORMES Y RUTINAS (v4 - ROLES DEFINITIVOS)
+============================================================
+
+=== ROLES DE CADA CHAT (REGLA DE ORO) ===
+
+️ DESARROLLO:
+- ✅ ÚNICO chat autorizado para MODIFICAR CÓDIGO en producción
+- ✅ Genera informes para Teoría, Backlog y Documento Maestro
+- ❌ NO recomienda cambios teóricos (eso es rol de Teoría)
+
+ DEBUGGING:
+- ✅ Autorizado para MODIFICAR CÓDIGO SOLO para resolver bugs
+- ✅ Genera informe para Documento Maestro
+- ❌ NO añade features nuevas (solo repara)
+
+📚 TEORÍA:
+- ❌ NUNCA modifica código
+- ✅ Solo RECOMIENDA cambios de código en sus informes
+- ✅ Actualiza Markmap con progreso académico
+- ✅ Genera informes para Desarrollo, Backlog y Documento Maestro
+
+📋 BACKLOG:
+- ❌ NUNCA modifica código
+- ✅ Solo RECOMIENDA cambios de código en sus informes
+- ✅ Prioriza mejoras con ICE Score
+- ✅ Genera informes para Desarrollo y Documento Maestro
+- ✅ Mantiene actualizado el archivo BACKLOG.md
+
+ DOCUMENTO MAESTRO (Coordinador):
+- ❌ NUNCA modifica código
+- ✅ Solo actualiza DOCUMENTO_MAESTRO_KSAP.txt
+- ✅ NO genera informes para otros chats
+
+📢 MARKETING / 🔌 APIs / Otros:
+-  NUNCA modifican código
+- ✅ Solo RECOMIENDAN en sus informes
+
+=== REGLA 1: ORDEN DE ACCIONES AL FINALIZAR SESIÓN ===
+
+1. Si termina una sesión de DESARROLLO:
+   - PASO A: Hacer commit y push a GitHub
+   - PASO B: Generar los informes
+
+2. Si termina una sesión de TEORÍA:
+   - PASO A: Corregir test y resolver dudas
+   - PASO B: Actualizar el Markmap
+   - PASO C: Generar los informes
+
+3. Si termina una sesión de BACKLOG:
+   - PASO A: Copiar contenido del chat a backlog_local.md
+   - PASO B: Ejecutar .\update-backlog.ps1
+   - PASO C: Subir BACKLOG.md al proyecto
+   - PASO D: Generar los informes
+
+=== REGLA 2: INFORMES CRUZADOS ===
+
+- DESARROLLO → genera informes para TEORÍA, BACKLOG y DOCUMENTO MAESTRO
+- TEORÍA → genera informes para DESARROLLO, BACKLOG y DOCUMENTO MAESTRO
+- BACKLOG → genera informes para DESARROLLO y DOCUMENTO MAESTRO
+- DEBUGGING → genera informe para DOCUMENTO MAESTRO
+- La USUARIA es responsable de copiar/pegar los informes al iniciar la siguiente sesión
+
+=== REGLA 3: ROL DEL DOCUMENTO MAESTRO ===
+
+- SOLO actualiza DOCUMENTO_MAESTRO_KSAP.txt con logros, objetivos y progreso
+- NO genera informes para otros chats
+- EXCEPCIÓN: Si la usuaria no pasa informe específico o pide resumen estratégico
+
+=== REGLA 4: RECORDATORIO POST-ACTUALIZACIÓN ===
+
+- Si el informe es de DESARROLLO → Recordar ejecutar script y subir código
+- Si el informe es de TEORÍA o BACKLOG → NO recordar nada sobre código
+
+Mensaje tipo (solo tras Desarrollo):
+"✅ Documento Maestro actualizado.
+️ Recuerda ejecutar el script para sincronizar el código:
+   .\update-context.ps1
+Y luego sube el nuevo CODIGO_ACTUAL_KSAP.txt al proyecto."
+
+=== REGLA 5: TRIPLE INFORME EN DESARROLLO ===
+
+Cuando termine una sesión de DESARROLLO, el chat debe generar AUTOMÁTICAMENTE tres informes:
+
+1. INFORME PARA TEORÍA:
+   "¡Hola, profe de Teoría! Te traigo el informe de la Sesión X de Desarrollo.
+    RESUMEN TÉCNICO - SESIÓN X: Ksap
+   ✅ Lo que he programado hoy: [Lista]
+   🐛 Bugs resueltos: [Lista]
+   📝 Cambios en el código: [Archivos modificados]
+    Conceptos teóricos aplicados: [Conceptos DAW usados]
+   🎯 Objetivos para la próxima Sesión de Teoría: [Propuesta]"
+
+2. INFORME PARA BACKLOG:
+   "¡Hola, gestor del Backlog! Te traigo el informe de la Sesión X de Desarrollo.
+   ✅ Lo que he programado hoy: [Lista]
+   🐛 Bugs resueltos: [Lista]
+   📝 Cambios en el código: [Archivos modificados]
+   🎯 Mejoras implementadas del backlog: [ID]: [Título]
+   🎯 Objetivos para la próxima Sesión: [Propuesta]"
+
+3. INFORME PARA DOCUMENTO MAESTRO:
+   "SESIÓN X COMPLETADA - [FECHA]
+   TIPO: Desarrollo
+   ✅ LOGROS: [Lista]
+   🐛 BUGS RESUELTOS: [Lista]
+   📝 CAMBIOS EN EL CÓDIGO: [Archivos modificados]
+   🎯 OBJETIVOS SIGUIENTE SESIÓN: [Lista]
+   📊 PROGRESO ACADÉMICO: [Si aplica]"
+
+=== REGLA 6: TRIPLE INFORME EN TEORÍA ===
+
+Cuando termine una sesión de TEORÍA, el chat debe seguir ESTE ORDEN estricto:
+
+1. Corregir el test y resolver todas las dudas
+2. ACTUALIZAR MARKMAP (OBLIGATORIO antes de generar informes)
+3. Generar informe para DESARROLLO:
+   "¡Hola, profe de Desarrollo! Te traigo el informe de la Sesión X de Teoría.
+   📚 CONCEPTOS TEÓRICOS - SESIÓN X
+   ✅ Temas cubiertos: [Lista]
+    Progreso académico: [Asignaturas y porcentajes]
+   🔧 Aplicación práctica recomendada: [Ejercicios para Ksap]
+    Objetivos para la próxima Sesión de Desarrollo: [Propuesta técnica]"
+
+4. Generar informe para BACKLOG:
+   "¡Hola, gestor del Backlog! Te traigo el informe de la Sesión X de Teoría.
+   📚 CONCEPTOS TEÓRICOS - SESIÓN X
+   ✅ Temas cubiertos: [Lista]
+   📊 Progreso académico: [Asignaturas y porcentajes]
+   🔧 Aplicación práctica recomendada: [Ejercicios para Ksap]
+   🎯 Objetivos para la próxima Sesión de Desarrollo: [Propuesta]"
+
+5. Generar informe para DOCUMENTO MAESTRO:
+   "SESIÓN X COMPLETADA - [FECHA]
+   TIPO: Teoría
+   ✅ LOGROS: [Lista]
+   📊 PROGRESO ACADÉMICO: [Asignatura]: [X]% → [Y]%"
+
+=== REGLA 7: DOBLE INFORME EN BACKLOG ===
+
+Cuando termine una sesión de BACKLOG, el chat debe generar AUTOMÁTICAMENTE dos informes:
+
+1. INFORME PARA DESARROLLO:
+   "¡Hola, profe de Desarrollo! Te traigo el backlog actualizado para la próxima sesión.
+   📋 BACKLOG PRIORIZADO:
+   🔴 CRÍTICO (Implementar YA): [ID]: [Título] - ICE: [X]
+   🟡 ALTA (Próxima sesión): [ID]: [Título] - ICE: [X]
+   🟢 MEDIA (Cuando haya tiempo): [ID]: [Título] - ICE: [X]
+   🎯 RECOMENDACIÓN PARA DESARROLLO:
+   Sugiero implementar: 1. [ID]: [Título] - Porque [razón]"
+
+2. INFORME PARA DOCUMENTO MAESTRO:
+   "SESIÓN X BACKLOG COMPLETADA - [FECHA]
+    BACKLOG ACTUALIZADO:
+   - Total de mejoras: [X]
+   - Críticas: [X] | Altas: [X] | Medias: [X]
+   ✅ MEJORAS IMPLEMENTADAS: [ID]: [Título]
+    NUEVAS MEJORAS AÑADIDAS: [ID]: [Título] - ICE: [X]"
+
+=== REGLA 8: CÓMO RECOMENDAR CAMBIOS DE CÓDIGO (Teoría y Backlog) ===
+
+Cuando Teoría o Backlog recomienden cambios de código en sus informes,
+deben usar este formato para que Desarrollo los implemente:
+
+"🔧 RECOMENDACIÓN DE CÓDIGO PARA DESARROLLO:
+- Archivo: [nombre del archivo]
+- Cambio sugerido: [descripción clara]
+- Justificación: [por qué mejora la app]
+- Prioridad: [Alta/Media/Baja]"
+
+Desarrollo decidirá si implementa la recomendación en su sesión.
+
+=== REGLA 9: FLUJO DE SINCRONIZACIÓN DEL BACKLOG ===
+
+El chat de BACKLOG debe recordar a la usuaria al finalizar cada sesión:
+
+"📋 Recuerda sincronizar el backlog:
+1. Copia el contenido actualizado a backlog_local.md
+2. Ejecuta: .\update-backlog.ps1
+3. Sube BACKLOG.md al proyecto"
+
+=== FORMATO ESTÁNDAR DE INFORMES ===
+
+Para CUALQUIER CHAT → DOCUMENTO MAESTRO:
+"SESIÓN X COMPLETADA - [FECHA]
+TIPO: [Teoría / Desarrollo / Backlog / Debugging]
+✅ LOGROS: [Lista]
+🐛 BUGS RESUELTOS: [Lista]
+📝 CAMBIOS EN EL CÓDIGO: [Archivos modificados]
+🎯 OBJETIVOS SIGUIENTE SESIÓN: [Lista]
+📊 PROGRESO ACADÉMICO (si es teoría): [Asignatura]: [X]% → [Y]%"
+
+=== REGLAS DE EJECUCIÓN ===
+
+1. Los informes se generan AUTOMÁTICAMENTE al terminar la sesión
+2. NO generar informes al INICIAR una sesión
+3. No preguntar "¿quieres que haga el informe?" → HACERLO DIRECTO
+4. Usar el nombre actual del proyecto: KSAP
+5. Mantener el tono profesional pero cercano ("¡Hola, profe!")
+6. Si recibes un informe al INICIAR una sesión: úsalo como contexto, NO respondas con otro informe
+7. Cada chat respeta su rol: solo Desarrollo y Debugging tocan código
+8. El chat de BACKLOG mantiene actualizado el archivo BACKLOG.md con ICE Scores y prioridades
+
+============================================================
+FIN DEL PROTOCOLO v4
+============================================================

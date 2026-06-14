@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Progreso Curso DAW - Proyecto KSAP</title>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script src="https://cdn.jsdelivr.net/npm/markmap-view@0.15.4"></script>
+  <script src="https://cdn.jsdelivr.net/npm/markmap-lib@0.15.4/dist/browser/index.min.js"></script>
+  <style>
+    body, html { margin: 0; padding: 0; height: 100%; width: 100%; font-family: 'Segoe UI', sans-serif; background-color: #f5f7fa; }
+    svg { width: 100%; height: 100%; }
+    .markmap-node text { font-family: 'Segoe UI', sans-serif !important; }
+  </style>
+</head>
+<body>
+  <svg id="markmap"></svg>
+  <script>
+    const markdown = `
+# <span style="color: #667eea; font-weight: bold; font-size: 1.2em;">🚀 Progreso Curso DAW - Proyecto KSAP (72% Global)</span>
+## <span style="color: #2c3e50; font-weight: bold;">📅 Estado Actual: Junio 2026</span>
+### <span style="color: #198754; font-weight: bold;">🟢 Fase 1: Fundamentos (100% Completada)</span>
+- **Rebranding**: CasaApp → Ksap <span style="color: #198754; font-weight: bold;">(100%)</span>
+- **Autenticación**: Login, Logout y Modo Invitado <span style="color: #198754; font-weight: bold;">(100%)</span>
+- **UI/UX**: Avatar Dropdown, Overlay y Drawer lateral <span style="color: #198754; font-weight: bold;">(100%)</span>
+- **Estilos**: Variables CSS y Modo Oscuro persistente <span style="color: #198754; font-weight: bold;">(100%)</span>
+- **Registro**: Validación Regex en tiempo real (Email, Pass) <span style="color: #198754; font-weight: bold;">(100%)</span>
+### <span style="color: #f39c12; font-weight: bold;">🟡 Fase 2: Hub de Navegación (95% En curso)</span>
+- **Búsqueda**: Open Food Facts (Mock + Debounce 300ms) <span style="color: #198754; font-weight: bold;">(100%)</span>
+- **Modal**: Añadir productos con detalles dinámicos <span style="color: #198754; font-weight: bold;">(100%)</span>
+- **DOM**: Delegación de eventos en elementos dinámicos <span style="color: #198754; font-weight: bold;">(100%)</span>
+- **Filtros por Responsable**: Implementados en tareas.html <span style="color: #198754; font-weight: bold;">(100%)</span>
+- **Renderizado Dinámico**: filter(), map(), join() <span style="color: #198754; font-weight: bold;">(100%)</span>
+- **Layout Fijo Responsive**: Nav/Header/Footer fijos en móvil <span style="color: #198754; font-weight: bold;">(100%)</span>
+- **FABs**: Botones flotantes con menús desplegables <span style="color: #198754; font-weight: bold;">(100%)</span>
+- **Estadísticas**: Cálculos reales en Perfil (reduce) <span style="color: #198754; font-weight: bold;">(100%)</span>
+### <span style="color: #f39c12; font-weight: bold;">🟡 Fase 3: Lista de Compra Inteligente (10% Iniciada)</span>
+- **Teoría APIs**: Fetch, async/await, try/catch <span style="color: #198754; font-weight: bold;">(100%)</span>
+- **API Real**: Open Food Facts (imágenes, info nutricional) <span style="color: #f39c12; font-weight: bold;">(0% - Próxima práctica)</span>
+- **OCR**: Escaneo de tickets (Mindee API) <span style="color: #95a5a6; font-weight: bold;">(0%)</span>
+### <span style="color: #95a5a6; font-weight: bold;">⚪ Fase 4: Eventos Culturales (0% Pendiente)</span>
+- **Geolocalización**: Mapa de eventos en radio de 50km <span style="color: #95a5a6; font-weight: bold;">(0%)</span>
+- **APIs**: Integración Eventbrite / Ticketmaster <span style="color: #95a5a6; font-weight: bold;">(0%)</span>
+### <span style="color: #667eea; font-weight: bold;">📊 Métricas de Aprendizaje (Sesión 11 Teoría - 76%)</span>
+- **Async/Await y Fetch**: <span style="color: #f39c12; font-weight: bold;"> 76% Consolidado (Test)</span>
+- **Reduce() Avanzado (Objetos)**: <span style="color: #198754; font-weight: bold;"> 100% Dominado</span>
+- **Patrones MVP**: <span style="color: #198754; font-weight: bold;">🟢 100% Aplicado en KSAP</span>
+### <span style="color: #667eea; font-weight: bold;">📚 Asignaturas DAW Implicadas</span>
+#### <span style="color: #198754; font-weight: bold;">🎓 1º Curso DAW (Completado)</span>
+- **ED**: Git, metodologías ágiles <span style="color: #198754; font-weight: bold;">(95%)</span>
+- **LM**: HTML5, CSS3, Responsive <span style="color: #198754; font-weight: bold;">(90%)</span>
+- **PF**: Java, POO <span style="color: #198754; font-weight: bold;">(85%)</span>
+- **BD**: SQL, MySQL <span style="color: #198754; font-weight: bold;">(88%)</span>
+- **SGE**: Linux, redes <span style="color: #198754; font-weight: bold;">(80%)</span>
+- **FOL**: Legislación <span style="color: #198754; font-weight: bold;">(85%)</span>
+#### <span style="color: #f39c12; font-weight: bold;"> 2º Curso DAW (En curso)</span>
+- **DWEC**: JS ES6+, DOM, APIs, Async <span style="color: #198754; font-weight: bold;">(92%)</span>
+- **DWES**: PHP, Node.js, REST <span style="color: #f39c12; font-weight: bold;">(60%)</span>
+- **DIW**: UX/UI, Mobile First, FABs <span style="color: #198754; font-weight: bold;">(85%)</span>
+- **DAW**: Proyecto KSAP integral <span style="color: #f39c12; font-weight: bold;">(72%)</span>
+- **EIE**: Modelo de negocio, ASO <span style="color: #f39c12; font-weight: bold;">(75%)</span>
+- **FCT**: Prácticas <span style="color: #95a5a6; font-weight: bold;">(0%)</span>
+    `;
+    const { Transformer } = window.markmap;
+    const { Markmap, loadCSS, loadJS } = window.markmap;
+    const transformer = new Transformer();
+    const { root, features } = transformer.transform(markdown);
+    if (features.styles) loadCSS(features.styles);
+    if (features.scripts) loadJS(features.scripts, { getMarkmap: () => window.markmap });
+    Markmap.create('#markmap', { autoFit: true, duration: 500, zoom: true, pan: true, initialExpandLevel: 6 }, root);
+  </script>
+</body>
+</html>
