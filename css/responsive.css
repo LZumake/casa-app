@@ -143,14 +143,14 @@
         font-size: 0.85rem;
     }
     
-    /* 8. Main scrolleable */
+    /* 8. Main scrolleable - ✅ CORREGIDO */
     main {
         padding: 1rem;
         padding-top: 170px;
-        padding-bottom: 150px;
+        padding-bottom: 100px; /* ✅ Espacio suficiente para el footer */
         overflow-y: auto;
-        min-height: calc(100vh - 170px);
-        height: auto;
+        min-height: auto; /* ✅ ELIMINADA la restricción de altura */
+        height: auto; /* ✅ Permite que crezca según el contenido */
         z-index: 1;
     }
     
@@ -182,12 +182,12 @@
         width: 100%;
     }
     
-    /* 12. MOSTRAR footer fijo con FABs en móvil */
+    /* 12. MOSTRAR footer fijo con FABs en móvil - ✅ CORREGIDO */
     .footer-fijo {
         display: flex !important;
-        padding: 0.3rem 1rem 0.5rem;
-        height: 65px;
-        gap: 0.2rem;
+        padding: 0.2rem 1rem 0.3rem;
+        height: 55px; /* ✅ REDUCIDO: de 65px a 55px */
+        gap: 0.1rem;
         z-index: 998;
     }
     

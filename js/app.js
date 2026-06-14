@@ -1,5 +1,6 @@
+alert('¡CARGANDO APP.JS NUEVO!');
 // ============================================
-// DATOS DE TAREAS (Nuestro "Estado")
+// DATOS DE TAREAS
 // ============================================
 const tareasData = [
     { id: 1, nombre: 'Hacer la cama, ventilar y ordenar dormitorios', responsable: 'Rosa', categoria: 'dormitorios', duracion: '20 min', frecuencia: 'Diaria', fecha: '2026-06-11', estado: 'pendiente' },
@@ -13,11 +14,34 @@ const tareasData = [
 ];
 
 // ============================================
-// INICIALIZACIÓN AL CARGAR LA PÁGINA
+// CARGAR ESTADOS DESDE localStorage
+// ============================================
+function cargarEstadosTareas() {
+    const estadosGuardados = localStorage.getItem('ksap_tareas_estados');
+    if (estadosGuardados) {
+        try {
+            const estados = JSON.parse(estadosGuardados);
+            tareasData.forEach(tarea => {
+                if (estados[tarea.id]) {
+                    tarea.estado = estados[tarea.id].estado;
+                }
+            });
+        } catch (e) {
+            console.error('Error al cargar estados:', e);
+        }
+    }
+}
+
+// ============================================
+// INICIALIZACIÓN
 // ============================================
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('🚀 DOMContentLoaded ejecutándose');
+    
+    // Cargar estados ANTES de renderizar
+    cargarEstadosTareas();
 
-    // MODO OSCURO - Cargar preferencia al iniciar
+    // MODO OSCURO
     const darkModeToggle = document.getElementById('dark-mode-toggle');
     const darkModeEnabled = localStorage.getItem('ksap_dark_mode') === 'true';
     if (darkModeEnabled) {
@@ -25,15 +49,17 @@ document.addEventListener('DOMContentLoaded', function() {
         if (darkModeToggle) darkModeToggle.checked = true;
     }
 
-    // AUTENTICACIÓN - Verificar sesión
+    // AUTENTICACIÓN
     const userData = checkAuth();
     if (userData) updateUIForUser(userData);
 
-    // BOTÓN DE INVITADO
+    // BOTÓN INVITADO
     const guestBtn = document.getElementById('guest-login');
-    if (guestBtn) guestBtn.addEventListener('click', () => login('Invitado', true));
+    if (guestBtn) {
+        guestBtn.addEventListener('click', () => login('Invitado', true));
+    }
 
-    // FORMULARIO DE LOGIN
+    // FORMULARIO LOGIN
     const loginForm = document.getElementById('login-form');
     if (loginForm) {
         loginForm.addEventListener('submit', function(e) {
@@ -55,14 +81,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // GPS - Toggle
     const gpsToggle = document.getElementById('gps-toggle');
-    if (localStorage.getItem('ksap_gps_enabled') === 'true' && gpsToggle) gpsToggle.checked = true;
+    if (localStorage.getItem('ksap_gps_enabled') === 'true' && gpsToggle) {
+        gpsToggle.checked = true;
+    }
     if (gpsToggle) {
         gpsToggle.addEventListener('change', function(e) {
             localStorage.setItem('ksap_gps_enabled', e.target.checked);
         });
     }
 
-    // DROPDOWN DEL AVATAR
+    // DROPDOWN AVATAR
     const avatarBtn = document.getElementById('user-avatar-btn');
     const userDropdown = document.getElementById('user-dropdown');
     if (avatarBtn && userDropdown) {
@@ -80,33 +108,69 @@ document.addEventListener('DOMContentLoaded', function() {
                 userDropdown.classList.remove('active');
             }
         });
-        const toggles = userDropdown.querySelectorAll('.toggle-switch');
-        toggles.forEach(toggle => {
-            toggle.addEventListener('click', function(e) {
-                e.stopPropagation();
-                const checkbox = toggle.querySelector('input[type="checkbox"]');
-                if (checkbox) {
-                    checkbox.checked = !checkbox.checked;
-                    checkbox.dispatchEvent(new Event('change'));
-                }
-            });
-        });
         updateAvatarUI();
     }
 
-    // TAREAS - Renderizado dinámico
+    // TAREAS - Renderizar
+    console.log('📋 Llamando a renderizarTareas()');
     renderizarTareas();
 
-    // COMPRAS - Checkboxes
-    const checkboxesCompras = document.querySelectorAll('.item-checkbox');
-    checkboxesCompras.forEach(function(checkbox) {
-        checkbox.addEventListener('change', function() {
-            const tarjeta = this.closest('.shopping-item');
-            tarjeta.classList.toggle('comprado', this.checked);
-        });
-    });
+    // ============================================
+    // ✅ TAREAS - EVENT LISTENER (DELEGACIÓN)
+    // ============================================
+    const contenedorTareas = document.getElementById('contenedor-tareas');
+    console.log('🔍 contenedorTareas:', contenedorTareas);
+    
+    if (contenedorTareas) {
+        console.log('✅ Event listener de tareas AÑADIDO');
+        
+        contenedorTareas.addEventListener('change', function(e) {
+            console.log('🎯 Evento change detectado');
+            
+            if (e.target.classList.contains('task-checkbox')) {
+                console.log('✅ Checkbox marcado/desmarcado');
+                
+                const fila = e.target.closest('tr');
+                const idTarea = parseInt(fila.getAttribute('data-id'));
+                const estaHecha = e.target.checked;
 
-    // VALIDACIÓN EN TIEMPO REAL (register.html)
+                // 1. Actualizar array
+                const tarea = tareasData.find(t => t.id === idTarea);
+                if (tarea) {
+                    tarea.estado = estaHecha ? 'completada' : 'pendiente';
+                    
+                    // 2. Guardar en localStorage
+                    const estadosGuardados = JSON.parse(localStorage.getItem('ksap_tareas_estados') || '{}');
+                    estadosGuardados[idTarea] = {
+                        estado: tarea.estado,
+                        fecha: new Date().toISOString(),
+                        usuario: 'Usuario'
+                    };
+                    localStorage.setItem('ksap_tareas_estados', JSON.stringify(estadosGuardados));
+                    console.log('💾 Guardado en localStorage');
+                }
+
+                // 3. Actualizar UI
+                if (estaHecha) {
+                    fila.classList.add('hecha');
+                    const statusCell = fila.querySelector('.status');
+                    if (statusCell) statusCell.textContent = 'Hecha';
+                } else {
+                    fila.classList.remove('hecha');
+                    const statusCell = fila.querySelector('.status');
+                    if (statusCell) statusCell.textContent = 'Pendiente';
+                }
+
+                // 4. Actualizar contador
+                updateTaskProgress();
+                console.log('📊 Contador actualizado');
+            }
+        });
+    } else {
+        console.error('❌ ERROR: No se encontró #contenedor-tareas');
+    }
+
+    // VALIDACIÓN FORMULARIOS
     const inputNombre = document.getElementById('nombre');
     if (inputNombre) {
         inputNombre.addEventListener('input', function() {
@@ -120,60 +184,16 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    const inputEmail = document.getElementById('email');
-    if (inputEmail) {
-        inputEmail.addEventListener('input', function() {
-            const valor = this.value.trim();
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (valor.length > 0) {
-                !emailRegex.test(valor) ? mostrarError('email', 'Introduce un email válido') : marcarValido('email');
-            } else {
-                this.classList.remove('error', 'valid');
-                document.getElementById('error-email').textContent = '';
-            }
-        });
-    }
-
-    const inputPassword = document.getElementById('password');
-    if (inputPassword) {
-        inputPassword.addEventListener('input', function() {
-            const valor = this.value;
-            const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
-            if (valor.length > 0) {
-                if (valor.length < 8) mostrarError('password', 'Mínimo 8 caracteres');
-                else if (!passwordRegex.test(valor)) mostrarError('password', 'Incluye mayúsculas y números');
-                else marcarValido('password');
-            } else {
-                this.classList.remove('error', 'valid');
-                document.getElementById('error-password').textContent = '';
-            }
-        });
-    }
-
-    const inputPassword2 = document.getElementById('password2');
-    if (inputPassword2) {
-        inputPassword2.addEventListener('input', function() {
-            const valor = this.value;
-            const password = document.getElementById('password').value;
-            if (valor.length > 0) {
-                valor !== password ? mostrarError('password2', 'Las contraseñas no coinciden') : marcarValido('password2');
-            } else {
-                this.classList.remove('error', 'valid');
-                document.getElementById('error-password2').textContent = '';
-            }
-        });
-    }
-
-    // CARGAR PERFIL REAL Y ESTADÍSTICAS
+    // PERFIL Y ESTADÍSTICAS
     cargarPerfil();
     calcularEstadisticas();
 
-    // FABs - Menús desplegables
+    // FABs
     const fabAgregar = document.getElementById('fab-agregar');
     const fabFiltros = document.getElementById('fab-filtros');
     const menuAgregar = document.getElementById('fab-menu-agregar');
     const menuFiltros = document.getElementById('fab-menu-filtros');
-
+    
     if (fabAgregar && menuAgregar) {
         fabAgregar.addEventListener('click', function(e) {
             e.stopPropagation();
@@ -185,7 +205,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-
+    
     if (fabFiltros && menuFiltros) {
         fabFiltros.addEventListener('click', function(e) {
             e.stopPropagation();
@@ -197,45 +217,28 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-
-    // Cerrar menús FAB al hacer clic fuera
+    
     document.addEventListener('click', function() {
         if (menuAgregar) menuAgregar.classList.remove('active');
         if (menuFiltros) menuFiltros.classList.remove('active');
     });
-
-    // Acciones del menú Agregar
-    if (menuAgregar) {
-        menuAgregar.querySelectorAll('.fab-menu-item').forEach(item => {
-            item.addEventListener('click', function() {
-                const accion = this.getAttribute('data-accion');
-                console.log(`➕ Agregar: ${accion}`);
-                menuAgregar.classList.remove('active');
-            });
-        });
-    }
-
-    // Filtros del menú Filtros
+    
     if (menuFiltros) {
         menuFiltros.querySelectorAll('.fab-menu-item').forEach(item => {
             item.addEventListener('click', function() {
                 const filtro = this.getAttribute('data-filtro');
-                console.log(`🔍 Filtrar por: ${filtro}`);
-                
                 if (filtro === 'zona') mostrarFiltroZona();
                 else if (filtro === 'responsable') mostrarFiltroResponsable();
                 else if (filtro === 'frecuencia') mostrarFiltroFrecuencia();
                 else if (filtro === 'estado') mostrarFiltroEstado();
-                
                 menuFiltros.classList.remove('active');
             });
         });
     }
-
-}); // ← Cierre correcto del DOMContentLoaded
+});
 
 // ============================================
-// MENÚ HAMBURGUESA (fuera del DOMContentLoaded)
+// MENÚ HAMBURGUESA
 // ============================================
 const hamburger = document.getElementById('hamburger');
 const nav = document.querySelector('nav');
@@ -274,92 +277,24 @@ if (hamburger) {
 }
 
 // ============================================
-// VALIDACIÓN DE FORMULARIO DE REGISTRO
-// ============================================
-const formularioRegistro = document.getElementById('register-form');
-if (formularioRegistro) {
-    formularioRegistro.addEventListener('submit', function(e) {
-        e.preventDefault();
-        limpiarErrores();
-
-        const nombre = document.getElementById('nombre')?.value.trim();
-        const email = document.getElementById('email')?.value.trim();
-        const password = document.getElementById('password')?.value;
-        const password2 = document.getElementById('password2')?.value;
-
-        if (!nombre || !email || !password) return;
-
-        let hayErrores = false;
-
-        if (nombre.split(' ').length < 2) {
-            mostrarError('nombre', 'Introduce tu nombre y apellido');
-            hayErrores = true;
-        } else marcarValido('nombre');
-
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-            mostrarError('email', 'Introduce un email válido');
-            hayErrores = true;
-        } else marcarValido('email');
-
-        const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
-        if (password.length < 8) {
-            mostrarError('password', 'Mínimo 8 caracteres');
-            hayErrores = true;
-        } else if (!passwordRegex.test(password)) {
-            mostrarError('password', 'Incluye mayúsculas y números');
-            hayErrores = true;
-        } else marcarValido('password');
-
-        if (password !== password2) {
-            mostrarError('password2', 'Las contraseñas no coinciden');
-            hayErrores = true;
-        } else if (password2 && password2.length > 0) marcarValido('password2');
-
-        if (!hayErrores) {
-            const userData = {
-                username: nombre,
-                email: email,
-                isGuest: false,
-                fechaRegistro: new Date().toLocaleDateString('es-ES'),
-                loginTime: new Date().toISOString()
-            };
-            localStorage.setItem('ksap_user', JSON.stringify(userData));
-            alert('¡Registro exitoso! Bienvenido/a ' + nombre.split(' ')[0]);
-            window.location.href = 'index.html';
-        }
-    });
-}
-
-// ============================================
-// GESTIÓN DE MENÚS - Evitar múltiples abiertos
+// FUNCIONES AUXILIARES
 // ============================================
 function cerrarTodosLosMenus() {
     const userDropdown = document.getElementById('user-dropdown');
     if (userDropdown) userDropdown.classList.remove('active');
-    
     const nav = document.querySelector('nav');
     const hamburger = document.getElementById('hamburger');
     const overlay = document.getElementById('overlay');
     if (nav) nav.classList.remove('open');
     if (hamburger) hamburger.classList.remove('active');
     if (overlay) overlay.classList.remove('active');
-    
     const menuAgregar = document.getElementById('fab-menu-agregar');
     const menuFiltros = document.getElementById('fab-menu-filtros');
     if (menuAgregar) menuAgregar.classList.remove('active');
     if (menuFiltros) menuFiltros.classList.remove('active');
-    
-    // Cerrar submenús de filtros si están abiertos
-    const submenus = document.querySelectorAll('.fab-submenu');
-    submenus.forEach(submenu => submenu.remove());
-    
     console.log('🔒 Todos los menús cerrados');
 }
 
-// ============================================
-// FUNCIONES AUXILIARES
-// ============================================
 function mostrarError(campoId, mensaje) {
     const input = document.getElementById(campoId);
     const errorSpan = document.getElementById('error-' + campoId);
@@ -374,20 +309,13 @@ function marcarValido(campoId) {
     if (errorSpan) errorSpan.textContent = '';
 }
 
-function limpiarErrores() {
-    document.querySelectorAll('.form-control').forEach(input => input.classList.remove('error', 'valid'));
-    document.querySelectorAll('.error-message').forEach(error => error.textContent = '');
-}
-
 function updateTaskProgress() {
     const totalTasks = tareasData ? tareasData.length : 0;
     const completedTasks = tareasData ? tareasData.filter(t => t.estado === 'completada').length : 0;
     const percentage = totalTasks > 0 ? Math.round((completedTasks / totalTasks) * 100) : 0;
-
     const completedText = document.getElementById('tasks-completed');
     const percentageText = document.getElementById('tasks-percentage');
     const progressFill = document.getElementById('progress-fill');
-
     if (completedText) completedText.textContent = `${completedTasks} de ${totalTasks} tareas completadas`;
     if (percentageText) percentageText.textContent = `${percentage}%`;
     if (progressFill) {
@@ -396,9 +324,6 @@ function updateTaskProgress() {
     }
 }
 
-// ============================================
-// SISTEMA DE LOGIN Y SESIÓN
-// ============================================
 function login(username, isGuest = false) {
     const userData = {
         username: username,
@@ -503,26 +428,17 @@ function calcularEstadisticas() {
     const statPendientes = document.getElementById('stat-tareas-pendientes');
     const statProductividad = document.getElementById('stat-productividad');
     if (!statCompletadas && !statPendientes && !statProductividad) return;
-    
     const totalTareas = tareasData.reduce((acc) => acc + 1, 0);
     const tareasCompletadas = tareasData.reduce((acc, t) => t.estado === 'completada' ? acc + 1 : acc, 0);
     const tareasPendientes = tareasData.reduce((acc, t) => t.estado === 'pendiente' ? acc + 1 : acc, 0);
     const productividad = totalTareas > 0 ? Math.round((tareasCompletadas / totalTareas) * 100) : 0;
-    
     if (statCompletadas) statCompletadas.textContent = tareasCompletadas;
     if (statPendientes) statPendientes.textContent = tareasPendientes;
     if (statProductividad) statProductividad.textContent = `${productividad}%`;
-    
-    console.log(`📊 Estadísticas: ${tareasCompletadas} completadas, ${tareasPendientes} pendientes, ${productividad}%`);
 }
 
-// ============================================
-// FILTROS DINÁMICOS - Función genérica
-// ============================================
 function crearSubmenuFiltro(titulo, campo, valores, icono) {
-    // Extraer valores únicos del array
     const valoresUnicos = [...new Set(tareasData.map(t => t[campo]))];
-    
     const subMenuHTML = `
         <div class="fab-submenu" id="fab-submenu-${campo}">
             <div class="fab-submenu-header">
@@ -537,11 +453,8 @@ function crearSubmenuFiltro(titulo, campo, valores, icono) {
             </div>
         </div>
     `;
-    
     const footer = document.querySelector('.footer-fijo');
     if (footer) footer.insertAdjacentHTML('beforebegin', subMenuHTML);
-    
-    // Event listeners
     document.querySelectorAll(`#fab-submenu-${campo} .fab-submenu-item`).forEach(boton => {
         boton.addEventListener('click', function() {
             const valor = this.getAttribute('data-valor');
@@ -549,51 +462,20 @@ function crearSubmenuFiltro(titulo, campo, valores, icono) {
             cerrarSubmenuFiltros();
         });
     });
-    
     document.getElementById('btn-cerrar-submenu').addEventListener('click', cerrarSubmenuFiltros);
-    
-    // Cerrar al hacer clic fuera
-    setTimeout(() => {
-        document.addEventListener('click', function cerrarFuera(e) {
-            const submenu = document.getElementById(`fab-submenu-${campo}`);
-            const fabFiltros = document.getElementById('fab-filtros');
-            const menuFiltros = document.getElementById('fab-menu-filtros');
-            if (submenu && !submenu.contains(e.target) && 
-                !fabFiltros.contains(e.target) && 
-                (!menuFiltros || !menuFiltros.contains(e.target))) {
-                cerrarSubmenuFiltros();
-                document.removeEventListener('click', cerrarFuera);
-            }
-        });
-    }, 100);
 }
 
-function mostrarFiltroZona() {
-    crearSubmenuFiltro('Zona', 'categoria', null, '🏠');
-}
-
-function mostrarFiltroResponsable() {
-    crearSubmenuFiltro('Responsable', 'responsable', null, '👤');
-}
-
-function mostrarFiltroFrecuencia() {
-    crearSubmenuFiltro('Frecuencia', 'frecuencia', null, '📅');
-}
-
-function mostrarFiltroEstado() {
-    crearSubmenuFiltro('Estado', 'estado', null, '✅');
-}
+function mostrarFiltroZona() { crearSubmenuFiltro('Zona', 'categoria', null, '🏠'); }
+function mostrarFiltroResponsable() { crearSubmenuFiltro('Responsable', 'responsable', null, '👤'); }
+function mostrarFiltroFrecuencia() { crearSubmenuFiltro('Frecuencia', 'frecuencia', null, '📅'); }
+function mostrarFiltroEstado() { crearSubmenuFiltro('Estado', 'estado', null, '✅'); }
 
 function cerrarSubmenuFiltros() {
     document.querySelectorAll('.fab-submenu').forEach(submenu => submenu.remove());
-    console.log('✕ Submenú de filtros cerrado');
 }
 
 function filtrarTareas(campo, valor) {
-    const tareasFiltradas = valor === 'todos' 
-        ? tareasData 
-        : tareasData.filter(tarea => tarea[campo] === valor);
-    
+    const tareasFiltradas = valor === 'todos' ? tareasData : tareasData.filter(tarea => tarea[campo] === valor);
     const filasHTML = tareasFiltradas.map(tarea => {
         const claseFila = tarea.estado === 'completada' ? 'hecha' : '';
         const textoEstado = tarea.estado === 'completada' ? 'Hecha' : 'Pendiente';
@@ -613,19 +495,13 @@ function filtrarTareas(campo, valor) {
             </tr>
         `;
     });
-    
     const contenedorTabla = document.getElementById('contenedor-tareas');
     if (contenedorTabla) contenedorTabla.innerHTML = filasHTML.join('');
-    
     updateTaskProgress();
-    console.log(`✅ Filtradas ${tareasFiltradas.length} tareas por ${campo}: ${valor}`);
 }
 
 function renderizarTareas(filtroResponsable = 'todos') {
-    const tareasFiltradas = filtroResponsable === 'todos' 
-        ? tareasData 
-        : tareasData.filter(tarea => tarea.responsable === filtroResponsable);
-
+    const tareasFiltradas = filtroResponsable === 'todos' ? tareasData : tareasData.filter(tarea => tarea.responsable === filtroResponsable);
     const filasHTML = tareasFiltradas.map(tarea => {
         const claseFila = tarea.estado === 'completada' ? 'hecha' : '';
         const textoEstado = tarea.estado === 'completada' ? 'Hecha' : 'Pendiente';
@@ -645,10 +521,8 @@ function renderizarTareas(filtroResponsable = 'todos') {
             </tr>
         `;
     });
-
     const contenedorTabla = document.getElementById('contenedor-tareas');
     if (contenedorTabla) contenedorTabla.innerHTML = filasHTML.join('');
-
     updateTaskProgress();
     console.log(`✅ Renderizadas ${tareasFiltradas.length} tareas (Filtro: ${filtroResponsable})`);
 }

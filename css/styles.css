@@ -525,6 +525,7 @@ footer {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.5rem;
+    padding-bottom: 2rem; /* ← AÑADIDO: espacio extra al final */
 }
 
 .shopping-category {
@@ -1911,6 +1912,47 @@ body.dark-mode .modal-field select {
     color: rgba(255, 255, 255, 0.5); /* Gris semitransparente */
     margin: 0;
 }
+
+/* ============================================
+   OPCIONES "PRÓXIMAMENTE" EN FABs
+   ============================================ */
+.fab-menu-item.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    position: relative;
+}
+
+.fab-menu-item.disabled:hover {
+    background: var(--bg-primary);
+    color: var(--text-secondary);
+    transform: none;
+}
+
+.badge-proximamente {
+    font-size: 0.65rem;
+    padding: 0.15rem 0.4rem;
+    background: var(--text-secondary);
+    color: white;
+    border-radius: 10px;
+    margin-left: 0.5rem;
+    font-weight: 600;
+}
+
+.fab-menu-item.disabled .badge-proximamente {
+    background: #999;
+}
+
+/* Nuevas categorías dinámicas */
+.category-header.panaderia { background: linear-gradient(135deg, #f6d365 0%, #fda085 100%); }
+.category-header.bebidas { background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); }
+.category-header.congelados { background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%); }
+.category-header.snacks { background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); }
+
+/* Espacio extra para categorías en compras.html */
+.shopping-section {
+    padding-bottom: 2rem;
+}
+
 /* Espacio extra para categorías dinámicas en móvil */
 @media (max-width: 768px) {
     .shopping-section {
