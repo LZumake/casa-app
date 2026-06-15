@@ -1,0 +1,23 @@
+# Configurar Git para usar LF (Unix) en todos los archivos de texto
+* text=auto eol=lf
+
+# Archivos específicos que deben usar LF
+*.txt text eol=lf
+*.md text eol=lf
+*.html text eol=lf
+*.css text eol=lf
+*.js text eol=lf
+*.json text eol=lf
+*.xml text eol=lf
+*.svg text eol=lf
+*.bat text eol=crlf
+*.ps1 text eol=crlf
+
+# Archivos binarios (sin conversión)
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.zip binary
