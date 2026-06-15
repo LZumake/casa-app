@@ -35,8 +35,6 @@ function cargarEstadosTareas() {
 // INICIALIZACIÓN
 // ============================================
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🚀 DOMContentLoaded ejecutándose');
-    
     // Cargar estados ANTES de renderizar
     cargarEstadosTareas();
 
@@ -111,24 +109,16 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // TAREAS - Renderizar
-    console.log('📋 Llamando a renderizarTareas()');
     renderizarTareas();
 
     // ============================================
     // ✅ TAREAS - EVENT LISTENER (DELEGACIÓN)
     // ============================================
-    const contenedorTareas = document.getElementById('contenedor-tareas');
-    console.log('🔍 contenedorTareas:', contenedorTareas);
+       const contenedorTareas = document.getElementById('contenedor-tareas');
     
     if (contenedorTareas) {
-        console.log('✅ Event listener de tareas AÑADIDO');
-        
         contenedorTareas.addEventListener('change', function(e) {
-            console.log('🎯 Evento change detectado');
-            
             if (e.target.classList.contains('task-checkbox')) {
-                console.log('✅ Checkbox marcado/desmarcado');
-                
                 const fila = e.target.closest('tr');
                 const idTarea = parseInt(fila.getAttribute('data-id'));
                 const estaHecha = e.target.checked;
@@ -146,7 +136,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         usuario: 'Usuario'
                     };
                     localStorage.setItem('ksap_tareas_estados', JSON.stringify(estadosGuardados));
-                    console.log('💾 Guardado en localStorage');
                 }
 
                 // 3. Actualizar UI
@@ -162,11 +151,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 // 4. Actualizar contador
                 updateTaskProgress();
-                console.log('📊 Contador actualizado');
             }
         });
     } else {
-        console.error('❌ ERROR: No se encontró #contenedor-tareas');
+        console.error('ERROR: No se encontró #contenedor-tareas');
     }
 
     // VALIDACIÓN FORMULARIOS
@@ -291,7 +279,6 @@ function cerrarTodosLosMenus() {
     const menuFiltros = document.getElementById('fab-menu-filtros');
     if (menuAgregar) menuAgregar.classList.remove('active');
     if (menuFiltros) menuFiltros.classList.remove('active');
-    console.log('🔒 Todos los menús cerrados');
 }
 
 function mostrarError(campoId, mensaje) {
@@ -523,5 +510,4 @@ function renderizarTareas(filtroResponsable = 'todos') {
     const contenedorTabla = document.getElementById('contenedor-tareas');
     if (contenedorTabla) contenedorTabla.innerHTML = filasHTML.join('');
     updateTaskProgress();
-    console.log(`✅ Renderizadas ${tareasFiltradas.length} tareas (Filtro: ${filtroResponsable})`);
 }
